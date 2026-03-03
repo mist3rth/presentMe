@@ -711,11 +711,46 @@
   @media (max-width: 1100px) {
     .ai-process-steps { grid-template-columns: repeat(3,1fr); gap: 2rem; }
     .ai-process-steps::before { display: none; }
-  }
-  @media (max-width: 1000px) {
-    nav { padding: 1rem 4vw; }
     
-    /* Burger responsive logic */
+    /* Layout reflow for tablet: logo/links top, CTA centered on new line */
+    nav { justify-content: space-between; align-items: center; gap: 0; padding: 1rem 5vw; flex-wrap: wrap; }
+    .nav-logo { order: 1; flex: 0 1 auto; }
+    .nav-links { order: 2; display: flex; gap: 1rem; }
+    .nav-links a { font-size: 0.65rem; }
+    .nav-cta { 
+      order: 3; 
+      margin: 0.8rem auto 0.2rem; 
+      width: 90%; 
+      max-width: 400px; 
+      text-align: center; 
+      display: block; 
+      padding: 0.75rem 1.5rem; 
+      font-size: 0.7rem; 
+    }
+    .burger-menu { display: none; }
+
+    section { padding: 100px 6vw 60px; }
+    .impact-band { grid-template-columns: repeat(2,1fr); }
+    .vision-grid { grid-template-columns: 1fr; }
+    .exp-card { grid-template-columns: 1fr; gap: 1.5rem; }
+    .proof-grid { grid-template-columns: 1fr; }
+    .competences-grid { grid-template-columns: 1fr 1fr; }
+    .looking-card { grid-template-columns: 1fr; gap: 2.5rem; padding: 2rem; }
+    .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    .lighthouse-scores { grid-template-columns: repeat(2,1fr); }
+    .creation-grid { grid-template-columns: 1fr; }
+    .brand-strip { grid-template-columns: 1fr 1fr; }
+    .hero-wrapper { flex-direction: column-reverse; gap: 2rem; align-items: flex-start; }
+    .hero-visual { width: 100%; max-width: 500px; margin-bottom: 2rem; }
+    .proof-main { padding: 1.5rem; }
+    .proof-project-name { font-size: 1.5rem; }
+    .metric-box { padding: 1rem; }
+    .metric-val { font-size: 1.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    /* Mobile Burger Logic */
+    .burger-menu { display: flex; order: 2; margin-right: -8px; }
     .nav-links {
       display: flex;
       position: fixed;
@@ -748,33 +783,15 @@
       visibility: visible;
       transform: translateY(0);
     }
-    .burger-menu { display: flex; }
     
     /* X transformation */
     .nav-open .burger-bar { background: var(--bg); }
     .nav-open .burger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .nav-open .burger-bar:nth-child(2) { opacity: 0; }
     .nav-open .burger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
     .nav-open { overflow: hidden; } /* Lock scroll when menu is open */
-    section { padding: 100px 6vw 60px; }
-    .impact-band { grid-template-columns: repeat(2,1fr); }
-    .vision-grid { grid-template-columns: 1fr; }
-    .exp-card { grid-template-columns: 1fr; gap: 1.5rem; }
-    .proof-grid { grid-template-columns: 1fr; }
-    .competences-grid { grid-template-columns: 1fr 1fr; }
-    .looking-card { grid-template-columns: 1fr; gap: 2.5rem; padding: 2rem; }
-    .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
-    .lighthouse-scores { grid-template-columns: repeat(2,1fr); }
-    .creation-grid { grid-template-columns: 1fr; }
-    .brand-strip { grid-template-columns: 1fr 1fr; }
-    .hero-wrapper { flex-direction: column-reverse; gap: 2rem; align-items: flex-start; }
-    .hero-visual { width: 100%; max-width: 500px; margin-bottom: 2rem; }
-    .proof-main { padding: 1.5rem; }
-    .proof-project-name { font-size: 1.5rem; }
-    .metric-box { padding: 1rem; }
-    .metric-val { font-size: 1.5rem; }
   }
+
   @media (max-width: 600px) {
     .impact-band { grid-template-columns: 1fr; }
     .brand-strip { grid-template-columns: 1fr; }
@@ -784,19 +801,6 @@
     .lighthouse-scores { grid-template-columns: 1fr; }
     .hero-text { text-align: center; align-items: center; }
     #scrollTop { display: none !important; }
-    nav { justify-content: space-between; align-items: center; gap: 0; padding: 0.8rem 5vw; flex-wrap: wrap; }
-    .nav-logo { order: 1; flex: 0 1 auto; }
-    .burger-menu { order: 2; margin-right: -8px; }
-    .nav-cta { 
-      order: 3; 
-      margin: 0.8rem auto 0.2rem; 
-      width: 90%; 
-      max-width: 400px; 
-      text-align: center; 
-      display: block; 
-      padding: 0.8rem 1.5rem; 
-      font-size: 0.75rem; 
-    }
   }
 
   /* ===========================
