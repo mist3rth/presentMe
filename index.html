@@ -163,7 +163,10 @@
     border: none;
     cursor: pointer;
     z-index: 1001;
-    padding: 10px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .burger-bar {
     width: 24px;
@@ -781,10 +784,19 @@
     .ai-process-steps { grid-template-columns: 1fr; }
     .lighthouse-scores { grid-template-columns: 1fr; }
     .hero-text { text-align: center; align-items: center; }
-    nav { justify-content: space-between; align-items: center; gap: 0.5rem; padding: 0.8rem 5vw; }
-    .nav-cta { margin: 0; width: auto; max-width: 100%; text-align: center; display: inline-block; padding: 0.5rem 1rem; font-size: 0.6rem; order: 3; flex-shrink: 0; }
-    .burger-menu { order: 2; margin-right: -10px; }
-    .nav-logo { order: 1; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    nav { justify-content: space-between; align-items: center; gap: 0; padding: 0.8rem 5vw; flex-wrap: wrap; }
+    .nav-logo { order: 1; flex: 0 1 auto; }
+    .burger-menu { order: 2; margin-right: -8px; }
+    .nav-cta { 
+      order: 3; 
+      margin: 0.8rem auto 0.2rem; 
+      width: 90%; 
+      max-width: 400px; 
+      text-align: center; 
+      display: block; 
+      padding: 0.8rem 1.5rem; 
+      font-size: 0.75rem; 
+    }
   }
 
   /* ===========================
