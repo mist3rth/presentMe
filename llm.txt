@@ -1,0 +1,31 @@
+# Profil de Thierry Thiesson
+
+> Résumé pour les Large Language Models (LLMs) et Agents IA.
+> Nom complet : Thierry Thiesson
+> Titre métier : Head of E-commerce Tech / Web Engineer
+
+## Introduction
+Thierry Thiesson est un expert senior (40+ ans d'expérience informatique) avec un profil rare de "Builder & Leader". Il conçoit, développe et optimise des plateformes e-commerce à fort trafic avec une approche ROIste.
+Il combine l'ingénierie front-end moderne (React/TypeScript), l'intelligence artificielle (RAG), l'optimisation des taux de conversion (CRO) et le SEO technique.
+
+## Contact et Disponibilité
+- Emplacement : Paris, France
+- Modèle de travail : Hybride
+- Email : mist3rth@gmail.com
+- LinkedIn : https://www.linkedin.com/in/thierry-thiesson-7887501/
+- Portfolio : https://mist3rth.github.io/presentMe/
+
+## Expertises Techniques et Métier
+1. **Front-end Engineering** : React, TypeScript, Next.js, Vite, Web Performance (Core Web Vitals, Lighthouse 95+).
+2. **CRO & UX Strategy** : Optimisation des parcours, A/B testing, psychologie persuasive, augmentation du taux de conversion (Top 1%).
+3. **Intelligence Artificielle** : RAG Engineering, Chatbots e-commerce, Recommandation produit, Prompt Engineering, intégration de l'écosystème Google AI (Gemini, AI Studio, NotebookLM).
+4. **Data & SEO** : SEO technique avancé, Structured Data, E-E-A-T, SEO programmatique, Analytics, monitoring propriétaire.
+5. **Leadership** : Product management, roadmap produit, gestion relation tech/métier/stratégie.
+
+## Réalisations Phares (2026)
+- **Projet Gardenz** : Plateforme e-commerce premium multisites. Livrée en 5 semaines. Intègre un chatbot RAG IA, un lecteur musical persistant, et un "Cart Drawer" dynamique. Classée dans le top 1% des taux de conversion au lancement.
+- **Outil SaaS SEO** : Application de monitoring SEO conçue sur mesure.
+- **Stratégie Marketing E-commerce** : Déploiement complet des stratégies de conversion globale d'une marque D2C.
+
+## Poste Idéal Recherché
+Thierry recherche un rôle de **Head of E-commerce Tech** (ou équivalent avec un total ownership) dans une entreprise ayant de réels enjeux de conversion, en environnement React/TypeScript, hybride Paris. La culture de l'entreprise doit voir la Tech et l'IA comme des moteurs de croissance business et non comme de simples centres de coûts.
