@@ -308,6 +308,7 @@
   .vision-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--cyan), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
   .vision-card:hover::before { transform: scaleX(1); }
   .vision-num { font-size: 4rem; font-weight: 800; color: rgba(0,212,255,0.06); line-height: 1; margin-bottom: 1.5rem; letter-spacing: -0.05em; }
+  #methode .vision-num { font-size: 2.2rem; color: unset; opacity: 1; letter-spacing: normal; }
   .vision-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
   .vision-desc { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); line-height: 1.8; }
 
@@ -818,6 +819,165 @@
   =========================== */
   :focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
   :focus:not(:focus-visible) { outline: none; }
+
+  /* ===========================
+     HERO — CITATION MÉTHODE
+  =========================== */
+  .hero-methode-quote {
+    margin: 2rem 0 2.5rem;
+    padding: 1.25rem 1.5rem 1.25rem 2rem;
+    border-left: 3px solid var(--cyan);
+    background: var(--glass);
+    backdrop-filter: blur(8px);
+    border-radius: 0 2px 2px 0;
+    max-width: 620px;
+  }
+  .hero-methode-line {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+  .hero-methode-footer {
+    margin-top: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .hero-methode-footer strong { color: var(--cyan); }
+
+  /* ===========================
+     MÉTHODE — SIGNATURE
+  =========================== */
+  .methode-signature {
+    margin-top: 3rem;
+    padding: 2rem 2.5rem;
+    border-left: 3px solid var(--green);
+    background: rgba(0,255,157,0.04);
+    max-width: 800px;
+  }
+  .methode-signature p {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+  .methode-signature p + p { margin-top: 0.5rem; }
+  .methode-signature strong { color: var(--green); }
+
+  /* ===========================
+     LIVRABLES RÉCENTS
+  =========================== */
+  .livrables-header {
+    margin-top: 4rem;
+    margin-bottom: 2.5rem;
+  }
+  .livrables-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1px solid rgba(255,107,53,0.3);
+    background: rgba(255,107,53,0.06);
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .livrables-title {
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .livrables-sub {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .livrables-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+  .livrable-card {
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .livrable-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, var(--cyan), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .livrable-card:hover::before { transform: scaleX(1); }
+  .livrable-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+  .livrable-metric {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(to right, var(--cyan), var(--green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .livrable-metric span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.7;
+  }
+  .livrable-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: 0.25rem;
+  }
+  .livrable-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
+  }
+  .livrable-bullets li {
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    color: var(--muted);
+    line-height: 1.5;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .livrable-bullets li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--cyan);
+  }
+  .livrable-time {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 0.75rem;
+    margin-top: auto;
+  }
+  @media (max-width: 1100px) {
+    .livrables-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .livrables-grid { grid-template-columns: 1fr; }
+    .hero-methode-quote { max-width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -869,6 +1029,12 @@
         Je prends la tête de votre stack e-commerce et je la transforme en <strong>avantage compétitif mesurable</strong>.<br>
         40 ans à l'intersection du code, du produit et de la croissance<br>je livre des plateformes qui <em>convertissent, performent et scalent</em>.
       </p>
+      <blockquote class="hero-methode-quote reveal" aria-label="Ma méthode en quelques mots">
+        <p class="hero-methode-line">Ce que je fais en quelques jours,</p>
+        <p class="hero-methode-line">certaines équipes mettent des mois à produire.</p>
+        <footer class="hero-methode-footer">Ce n'est pas de la chance. <strong>C'est une méthode.</strong></footer>
+      </blockquote>
+
       <div class="hero-actions">
         <a href="#proof" class="btn-primary">Voir mes réalisations</a>
         <a href="#contact" class="btn-ghost">Discutons</a>
@@ -944,6 +1110,46 @@
       <p class="vision-desc">Je peux coder autant que diriger une équipe. Cette double casquette — praticien expert et visionnaire produit — me permet d'aligner tech et métier sans friction ni perte en traduction.</p>
     </article>
   </div>
+</section>
+
+<div class="glow-sep" role="separator"></div>
+
+<!-- ========================
+     MÉTHODE
+========================= -->
+<section id="methode" aria-labelledby="methode-title">
+  <div class="section-header reveal">
+    <span class="section-index" aria-hidden="true">01.5</span>
+    <h2 class="section-title" id="methode-title">La Méthode</h2>
+    <div class="section-line" aria-hidden="true"></div>
+  </div>
+  <p class="section-sub reveal">
+    Je travaille à l'intersection de trois mondes —
+    et c'est là que se crée l'avantage concurrentiel.
+  </p>
+
+  <div class="vision-grid">
+    <article class="glass-card vision-card reveal reveal-d1">
+      <div class="vision-num" aria-hidden="true">⚡</div>
+      <h3 class="vision-title">Stratégie digitale</h3>
+      <p class="vision-desc">E-commerce, catalogues produits complexes, SEO à grande échelle, identité de marque, gouvernance de données, automatisation de flux. Je pilote l'ensemble, pas un fragment.</p>
+    </article>
+    <article class="glass-card vision-card reveal reveal-d2">
+      <div class="vision-num" aria-hidden="true">🤖</div>
+      <h3 class="vision-title">Architecture IA</h3>
+      <p class="vision-desc">Je ne me contente pas d'utiliser l'IA. Je conçois les systèmes qui la font travailler — pipelines, connecteurs, workflows HITL. La différence entre un outil et une infrastructure.</p>
+    </article>
+    <article class="glass-card vision-card reveal reveal-d3">
+      <div class="vision-num" aria-hidden="true">🏗️</div>
+      <h3 class="vision-title">Production de contenu</h3>
+      <p class="vision-desc">Génération visuelle IA, rédaction SEO automatisée, PIM industrialisé, flux synchronisés. De l'idée au livrable — sans perte, sans doublon, sans délai.</p>
+    </article>
+  </div>
+
+  <blockquote class="methode-signature reveal" aria-label="La clé de ma vitesse d'exécution">
+    <p>Je sais quoi confier à l'IA. Je sais quoi garder pour l'humain.</p>
+    <p>Je sais comment assembler les deux pour que ça <strong>tienne dans le temps</strong>.</p>
+  </blockquote>
 </section>
 
 <div class="glow-sep" role="separator"></div>
@@ -1047,6 +1253,65 @@
         <div class="exp-tags" style="margin-top:1rem;"><span class="tag">Branding</span><span class="tag">Funnel</span><span class="tag">Content</span><span class="tag">Acquisition</span></div>
       </article>
     </div>
+  </div>
+
+  <!-- LIVRABLES RÉCENTS -->
+  <div class="livrables-header reveal" aria-label="Livrables produits récemment en temps record">
+    <span class="livrables-tag" aria-hidden="true">🔴 RÉCEMMENT — EN UN TEMPS RECORD</span>
+    <h3 class="livrables-title">Ce que j'ai produit, livrable par livrable</h3>
+    <p class="livrables-sub">Pas des POC. Pas des maquettes. Des systèmes prêts à l'emploi.</p>
+  </div>
+
+  <div class="livrables-grid">
+
+    <article class="glass-card livrable-card reveal reveal-d1">
+      <div class="livrable-icon" aria-hidden="true">📋</div>
+      <div class="livrable-metric">12 <span>mois</span></div>
+      <h4 class="livrable-name">Roadmap stratégique digitale</h4>
+      <ul class="livrable-bullets">
+        <li>6 phases progressives avec KPIs mesurables</li>
+        <li>Budget maîtrisé · Gouvernance de transition</li>
+        <li>Plan de migration SEO · Document exécutif</li>
+      </ul>
+      <div class="livrable-time">Livré en quelques heures</div>
+    </article>
+
+    <article class="glass-card livrable-card reveal reveal-d2">
+      <div class="livrable-icon" aria-hidden="true">🏗️</div>
+      <div class="livrable-metric">E2E</div>
+      <h4 class="livrable-name">Architecture IA complète</h4>
+      <ul class="livrable-bullets">
+        <li>Du Master Product File à la publication e-commerce</li>
+        <li>Flux SEO automatisé · Génération visuelle IA</li>
+        <li>Synchronisation stock temps réel · Validation HITL</li>
+      </ul>
+      <div class="livrable-time">Rien ne se perd, rien ne se duplique</div>
+    </article>
+
+    <article class="glass-card livrable-card reveal reveal-d3">
+      <div class="livrable-icon" aria-hidden="true">🗄️</div>
+      <div class="livrable-metric">1 000 <span>refs</span></div>
+      <h4 class="livrable-name">PIM industrialisé</h4>
+      <ul class="livrable-bullets">
+        <li>Source unique de vérité pour tout l'écosystème</li>
+        <li>Connecté à chaque canal de distribution</li>
+        <li>Zéro double saisie · Zéro désynchronisation</li>
+      </ul>
+      <div class="livrable-time">Gestion centralisée</div>
+    </article>
+
+    <article class="glass-card livrable-card reveal reveal-d1">
+      <div class="livrable-icon" aria-hidden="true">📐</div>
+      <div class="livrable-metric">HITL</div>
+      <h4 class="livrable-name">Workflow Human In The Loop</h4>
+      <ul class="livrable-bullets">
+        <li>L'IA produit à l'échelle</li>
+        <li>L'humain garde le contrôle qualité &amp; conformité</li>
+        <li>Chaque output validé avant publication</li>
+      </ul>
+      <div class="livrable-time">La vitesse sans sacrifier le jugement</div>
+    </article>
+
   </div>
 </section>
 
