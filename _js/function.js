@@ -189,30 +189,38 @@ if (
 /* ========================
    CAROUSEL
 ========================= */
-const carousel = document.querySelector(".visual-carousel");
-const hint = document.querySelector(".carousel-hint");
-const btnPrev = document.querySelector(".carousel-nav.prev");
-const btnNext = document.querySelector(".carousel-nav.next");
+const setupCarousel = (selector, total) => {
+  const container = document.querySelector(selector);
+  if (!container) return;
+  
+  const carousel = container.querySelector(".visual-carousel");
+  const hint = container.querySelector(".carousel-hint");
+  const btnPrev = container.querySelector(".carousel-nav.prev");
+  const btnNext = container.querySelector(".carousel-nav.next");
 
-if (carousel && hint) {
-  const total = 11;
-  const updateHint = () => {
-    const index = Math.round(carousel.scrollLeft / carousel.offsetWidth) + 1;
-    hint.textContent =
-      (window.innerWidth > 600
-        ? "Explorez la plateforme"
-        : "Swipez pour explorer") + ` • ${index}/${total}`;
-  };
+  if (carousel && hint) {
+    const updateHint = () => {
+      const index = Math.round(carousel.scrollLeft / carousel.offsetWidth) + 1;
+      hint.textContent =
+        (window.innerWidth > 600
+          ? "Explorez la plateforme"
+          : "Swipez pour explorer") + ` • ${index}/${total}`;
+    };
 
-  carousel.addEventListener("scroll", updateHint, { passive: true });
+    carousel.addEventListener("scroll", updateHint, { passive: true });
 
-  btnPrev?.addEventListener("click", () => {
-    carousel.scrollBy({ left: -carousel.offsetWidth, behavior: "smooth" });
-  });
-  btnNext?.addEventListener("click", () => {
-    carousel.scrollBy({ left: carousel.offsetWidth, behavior: "smooth" });
-  });
-}
+    btnPrev?.addEventListener("click", () => {
+      carousel.scrollBy({ left: -carousel.offsetWidth, behavior: "smooth" });
+    });
+    btnNext?.addEventListener("click", () => {
+      carousel.scrollBy({ left: carousel.offsetWidth, behavior: "smooth" });
+    });
+  }
+};
+
+// Initialize carousels
+setupCarousel(".visual-showcase:not([style*='grid-column: 1 / -1'])", 11); // Gardenz
+setupCarousel(".visual-showcase[style*='grid-column: 1 / -1']", 3); // Reflexe
 
 /* ========================
    SCROLL TO TOP (70%)

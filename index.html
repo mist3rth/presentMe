@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="_images/illustration.webp" type="image/webp">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://mist3rth.github.io/presentMe/">
 <script type="application/ld+json">
 {
@@ -328,7 +328,7 @@
   .exp-desc { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.5rem; }
   .exp-results { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
   .result-item { display: flex; align-items: flex-start; gap: 0.75rem; font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.5; }
-  .result-icon { color: var(--green); flex-shrink: 0; aria-hidden: true; }
+  .result-icon { color: var(--green); flex-shrink: 0; }
   .exp-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .tag { font-family: var(--font-mono); font-size: 0.6rem; color: var(--cyan); padding: 0.2rem 0.65rem; border: 1px solid var(--cyan-dim); background: var(--cyan-dim); letter-spacing: 0.05em; }
 
@@ -347,7 +347,7 @@
   .proof-features { display: flex; flex-direction: column; gap: 0.6rem; }
   .feat { display: flex; align-items: flex-start; gap: 0.75rem; font-family: var(--font-mono); font-size: 0.73rem; color: var(--muted); line-height: 1.5; }
   .feat::before { content: '▸'; color: var(--cyan); flex-shrink: 0; }
-  .proof-secondary { display: flex; flex-direction: column; gap: 1.5rem; }
+  .proof-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; grid-column: 1 / -1; }
   .proof-mini { padding: 2rem; }
   .proof-mini-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--cyan); letter-spacing: 0.15em; margin-bottom: 0.75rem; }
   .proof-mini-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
@@ -812,6 +812,7 @@
     .lighthouse-scores { grid-template-columns: 1fr; }
     .hero-text { text-align: center; align-items: center; }
     #scrollTop { display: none !important; }
+    .proof-secondary { grid-template-columns: 1fr; }
   }
 
   /* ===========================
@@ -1219,41 +1220,195 @@
     <div class="section-line" aria-hidden="true"></div>
   </div>
   <p class="section-sub reveal">Des projets livrés, pas des POC. Des résultats mesurables, pas des promesses.</p>
-  <div class="proof-grid">
-    <article class="glass-card proof-main reveal reveal-d1">
-      <p class="proof-label">[ Projet phare · 5 semaines · 2026 ]</p>
-      <h3 class="proof-project-name">Gardenz — E-commerce Premium</h3>
-      <p class="proof-headline">Plateforme multi-univers en React/TypeScript avec assistant IA RAG, outils propriétaires et top 1% conversion.</p>
-      <dl class="proof-metrics">
-        <div class="metric-box"><dt class="metric-label">Taux de conversion</dt><dd class="metric-val">Top 1%</dd></div>
-        <div class="metric-box"><dt class="metric-label">Délai de livraison</dt><dd class="metric-val">5 sem.</dd></div>
-        <div class="metric-box"><dt class="metric-label">Univers de marque</dt><dd class="metric-val">3</dd></div>
-        <div class="metric-box"><dt class="metric-label">IA en production</dt><dd class="metric-val">RAG</dd></div>
-      </dl>
-      <ul class="proof-features" aria-label="Fonctionnalités clés">
-        <li class="feat">Méga menu contextuel adaptatif — UX et design distincts par univers</li>
-        <li class="feat">Chatbot RAG avec base de connaissance métier, recommandation produit en cartes</li>
-        <li class="feat">Lecteur musical Spotify-like persistant toutes pages avec file d'attente auto</li>
-        <li class="feat">Cart Drawer dynamique — cross-sell intelligent, seuil livraison offerte temps réel</li>
-        <li class="feat">Calculateur de dosage, index moléculaire, Quick View, guide tailles propriétaires</li>
-        <li class="feat">Espace client "Clan" : historique commandes temps réel, gestion adresses</li>
-      </ul>
-    </article>
-    <div class="proof-secondary">
-      <article class="glass-card proof-mini reveal reveal-d2">
-        <p class="proof-mini-label">[ Outil SaaS · 2026 ]</p>
-        <h4 class="proof-mini-name">SEO Monitoring Tool</h4>
-        <p class="proof-mini-desc">Outil de monitoring SEO propriétaire — suivi positionnements, alertes régressions, tableaux de bord temps réel.</p>
-        <div class="exp-tags" style="margin-top:1rem;"><span class="tag">SEO</span><span class="tag">Dashboard</span><span class="tag">Monitoring</span></div>
+    <div class="proof-grid">
+      <article class="glass-card proof-main reveal reveal-d1" style="--lh-color-main: #00ff9d; --lh-glow-main: rgba(0,255,157,0.2);">
+        <p class="proof-label">[ Projet phare · 5 semaines · 2026 ]</p>
+        <h3 class="proof-project-name">Gardenz — E-commerce Premium</h3>
+        <p class="proof-headline">Plateforme multi-univers en React/TypeScript avec assistant IA RAG, outils propriétaires et top 1% conversion.</p>
+        <dl class="proof-metrics">
+          <div class="metric-box"><dt class="metric-label">Taux de conversion</dt><dd class="metric-val">Top 1%</dd></div>
+          <div class="metric-box"><dt class="metric-label">Délai de livraison</dt><dd class="metric-val">5 sem.</dd></div>
+          <div class="metric-box"><dt class="metric-label">Univers de marque</dt><dd class="metric-val">3</dd></div>
+          <div class="metric-box"><dt class="metric-label">IA en production</dt><dd class="metric-val">RAG</dd></div>
+        </dl>
+        <ul class="proof-features" aria-label="Fonctionnalités clés">
+          <li class="feat">Méga menu contextuel adaptatif — UX et design distincts par univers</li>
+          <li class="feat">Chatbot RAG avec base de connaissance métier, recommandation produit en cartes</li>
+          <li class="feat">Lecteur musical Spotify-like persistant toutes pages avec file d'attente auto</li>
+          <li class="feat">Cart Drawer dynamique — cross-sell intelligent, seuil livraison offerte temps réel</li>
+          <li class="feat">Calculateur de dosage, index moléculaire, Quick View, guide tailles propriétaires</li>
+          <li class="feat">Espace client "Clan" : historique commandes temps réel, gestion adresses</li>
+        </ul>
       </article>
-      <article class="glass-card proof-mini reveal reveal-d3">
-        <p class="proof-mini-label">[ Stratégie · 2026 ]</p>
-        <h4 class="proof-mini-name">Marketing Strategy E-commerce</h4>
-        <p class="proof-mini-desc">Stratégie marketing complète pour une marque e-commerce : positionnement, funnel, content strategy, plan d'activation omnicanal et KPIs.</p>
-        <div class="exp-tags" style="margin-top:1rem;"><span class="tag">Branding</span><span class="tag">Funnel</span><span class="tag">Content</span><span class="tag">Acquisition</span></div>
+
+      <style>
+        /* Block Hover */
+        .reflexe-card {
+          transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        }
+        .reflexe-card:hover { 
+          border-color: rgba(232, 48, 58, 0.4) !important; 
+          background: rgba(232, 48, 58, 0.03) !important;
+          box-shadow: 0 20px 60px rgba(232, 48, 58, 0.12) !important;
+          transform: translateY(-5px) !important;
+        }
+
+        /* CTA Hover */
+        .btn-reflexe {
+          transition: all 0.3s ease !important;
+          border-width: 1.5px !important;
+          font-weight: 700 !important;
+          letter-spacing: 0.1em !important;
+        }
+        .btn-reflexe:hover {
+          background: #E8303A !important;
+          color: #fff !important;
+          border-color: #E8303A !important;
+          box-shadow: 0 0 30px rgba(232, 48, 58, 0.4) !important;
+          transform: translateY(-2px);
+        }
+        
+        /* Better Lighthouse centering */
+        .lh-score-card-reflexe {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: center !important;
+          padding: 1.5rem 0.5rem !important;
+          min-width: 0;
+        }
+        .lh-ring-reflexe {
+          width: 60px;
+          height: 60px;
+          position: relative;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          margin-bottom: 0.8rem;
+        }
+        .lh-ring-reflexe svg {
+          position: absolute;
+          inset: 0;
+          width: 60px;
+          height: 60px;
+          transform: rotate(-90deg);
+        }
+        .lh-num-reflexe {
+          position: relative !important;
+          top: auto !important;
+          left: auto !important;
+          transform: none !important;
+          margin: 0 !important;
+          font-size: 1rem !important;
+          font-weight: 800 !important;
+          line-height: 1 !important;
+          display: block !important;
+          text-align: center;
+        }
+        .lh-label-reflexe {
+          font-family: var(--font-mono);
+          font-size: 0.55rem !important;
+          color: var(--muted);
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          text-align: center;
+        }
+
+        @media (max-width: 600px) {
+          .lh-ring-reflexe {
+            width: 50px;
+            height: 50px;
+          }
+          .lh-ring-reflexe svg {
+            width: 50px;
+            height: 50px;
+          }
+          .lh-num-reflexe {
+            font-size: 0.85rem !important;
+          }
+        }
+      </style>
+
+      <article class="glass-card proof-main reflexe-card reveal reveal-d2" style="background: rgba(7, 9, 15, 0.8); border-color: rgba(232, 48, 58, 0.15);">
+        <p class="proof-label" style="color: #E8303A;">[ Projet solo · 3 jours · 2026 ]</p>
+        <h3 class="proof-project-name" style="font-family: 'Syne', sans-serif;">Reflexe.io — Journal numérique</h3>
+        <p class="proof-headline" style="font-family: 'IBM Plex Serif', serif;">Journal éditorial solo sur la manipulation cognitive. 12 articles de fond, identité visuelle sur mesure, scores Lighthouse au vert.</p>
+        
+        <div class="lighthouse-scores" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 2.5rem;">
+          <article class="glass-card lh-score-card-reflexe" style="--lh-color: #00ff9d; --lh-color-dim: rgba(0,255,157,0.05);">
+            <div class="lh-ring-reflexe" aria-label="Accessibilité : 96 sur 100">
+              <svg viewBox="0 0 36 36" aria-hidden="true">
+                <circle class="lh-ring-bg" cx="18" cy="18" r="15.9" style="stroke: rgba(255,255,255,0.05); fill: none; stroke-width: 3.5;"/>
+                <circle class="lh-ring-fill" cx="18" cy="18" r="15.9" style="stroke: var(--lh-color); fill: none; stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 4;" data-score="96"/>
+              </svg>
+              <span class="lh-num-reflexe" style="color: var(--lh-color);">96</span>
+            </div>
+            <div class="lh-label-reflexe">A11Y</div>
+          </article>
+
+          <article class="glass-card lh-score-card-reflexe" style="--lh-color: #00d4ff; --lh-color-dim: rgba(0,212,255,0.05);">
+            <div class="lh-ring-reflexe" aria-label="Best Practices : 96 sur 100">
+              <svg viewBox="0 0 36 36" aria-hidden="true">
+                <circle class="lh-ring-bg" cx="18" cy="18" r="15.9" style="stroke: rgba(255,255,255,0.05); fill: none; stroke-width: 3.5;"/>
+                <circle class="lh-ring-fill" cx="18" cy="18" r="15.9" style="stroke: var(--lh-color); fill: none; stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 4;" data-score="96"/>
+              </svg>
+              <span class="lh-num-reflexe" style="color: var(--lh-color);">96</span>
+            </div>
+            <div class="lh-label-reflexe">BEST PRACTICES</div>
+          </article>
+
+          <article class="glass-card lh-score-card-reflexe" style="--lh-color: #FBBC04; --lh-color-dim: rgba(251,188,4,0.05);">
+            <div class="lh-ring-reflexe" aria-label="SEO : 100 sur 100">
+              <svg viewBox="0 0 36 36" aria-hidden="true">
+                <circle class="lh-ring-bg" cx="18" cy="18" r="15.9" style="stroke: rgba(255,255,255,0.05); fill: none; stroke-width: 3.5;"/>
+                <circle class="lh-ring-fill" cx="18" cy="18" r="15.9" style="stroke: var(--lh-color); fill: none; stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 0;" data-score="100"/>
+              </svg>
+              <span class="lh-num-reflexe" style="color: var(--lh-color);">100</span>
+            </div>
+            <div class="lh-label-reflexe">SEO</div>
+          </article>
+        </div>
+
+        <ul class="proof-features" aria-label="Points forts" style="font-family: 'JetBrains Mono', monospace;">
+          <li class="feat" style="--cyan: #E8303A;">Next.js 14 App Router · TypeScript strict · SSG · MDX local</li>
+          <li class="feat" style="--cyan: #E8303A;">Thèse éditoriale originale sur les biais cognitifs</li>
+          <li class="feat" style="--cyan: #E8303A;">Design System custom : Noir #07090F / Rouge #E8303A</li>
+          <li class="feat" style="--cyan: #E8303A;">Colonne de lecture 720px · Hiérarchie visuelle stricte</li>
+        </ul>
+
+        <div style="margin-top: 2rem;">
+          <a href="https://mist3rth.github.io/Reflex.io/" target="_blank" rel="noopener noreferrer" class="btn-ghost btn-reflexe" style="padding: 0.9rem 1.8rem; font-size: 0.8rem; border-color: rgba(232, 48, 58, 0.4); color: #E8303A; display: inline-block;">DÉCOUVRIR LE JOURNAL</a>
+        </div>
       </article>
+
+      <!-- CAROUSEL REFLEXE -->
+      <div class="visual-showcase reflexe-card reveal reveal-d3" style="grid-column: 1 / -1; margin-top: 1rem;">
+        <div class="glass-card visual-card" style="aspect-ratio: 21 / 9; border-color: rgba(232, 48, 58, 0.2);">
+          <div style="padding: 0.8rem 1.2rem; display: flex; justify-content: space-between; align-items: center; background: #07090F; border-bottom: 1px solid rgba(232, 48, 58, 0.1);">
+            <span class="visual-card-label" style="background: rgba(232, 48, 58, 0.1); color: #E8303A; border-color: rgba(232, 48, 58, 0.2);">Réflexe.io — Visuals</span>
+          </div>
+          <div class="visual-carousel" id="reflexeCarousel">
+            <div class="carousel-item"><img src="_images/reflexe_1.png" alt="Reflexe.io Journal - Accueil" style="object-fit: cover;"></div>
+            <div class="carousel-item"><img src="_images/reflexe_2.png" alt="Reflexe.io Journal - Article Detail" style="object-fit: cover;"></div>
+            <div class="carousel-item"><img src="_images/reflexe_3.png" alt="Reflexe.io Journal - Archive" style="object-fit: cover;"></div>
+          </div>
+          <div class="carousel-hint" style="color: #E8303A; border-color: rgba(232, 48, 58, 0.2);">Explorez le journal • 1/3</div>
+        </div>
+      </div>
+
+      <div class="proof-secondary">
+        <article class="glass-card proof-mini">
+          <p class="proof-mini-label">[ Outil SaaS · 2026 ]</p>
+          <h4 class="proof-mini-name">SEO Monitoring Tool</h4>
+          <p class="proof-mini-desc">Outil de monitoring SEO propriétaire — suivi positionnements, alertes régressions, tableaux de bord temps réel.</p>
+        </article>
+        <article class="glass-card proof-mini">
+          <p class="proof-mini-label">[ Stratégie · 2026 ]</p>
+          <h4 class="proof-mini-name">Marketing Strategy E-commerce</h4>
+          <p class="proof-mini-desc">Stratégie marketing complète pour une marque e-commerce : positionnement, funnel, content strategy, plan d'activation omnicanal et KPIs.</p>
+        </article>
+      </div>
     </div>
-  </div>
 
   <!-- LIVRABLES RÉCENTS -->
   <div class="livrables-header reveal" aria-label="Livrables produits récemment en temps record">
