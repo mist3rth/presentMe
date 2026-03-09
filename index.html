@@ -287,6 +287,34 @@
   .impact-num { font-size: 2.5rem; font-weight: 800; line-height: 1; background: linear-gradient(to right, var(--cyan), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .impact-label { font-family: var(--font-mono); font-size: 0.63rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5; }
 
+  /* ===========================
+     SPOTLIGHT VIDEO
+  =========================== */
+  #pitch-video { padding-top: 60px; padding-bottom: 60px; }
+  .spotlight-card { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; padding: 4rem; align-items: center; }
+  .spotlight-text { display: flex; flex-direction: column; gap: 1.5rem; }
+  .spotlight-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; }
+  .spotlight-title { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+  .spotlight-desc { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+  .video-container { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 50px rgba(0,0,0,0.3); background: #000; }
+  .video-container video { width: 100%; height: 100%; object-fit: cover; }
+  .video-container::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--cyan-dim); pointer-events: none; opacity: 0.5; }
+
+  @media (max-width: 1100px) {
+    .spotlight-card { grid-template-columns: 1fr; gap: 2.5rem; padding: 1.0rem; }
+    .spotlight-text { text-align: center; align-items: center; }
+    .impact-band { grid-template-columns: 1fr; margin-top: 3rem; gap: 1.5rem; }
+  }
+
+  /* REVEAL SYSTEM */
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+
+
+
 </style>
 </head>
 <body>
@@ -300,7 +328,7 @@
 <nav role="navigation" aria-label="Navigation principale">
   <a href="#" class="nav-logo">THIERRY THIESSON</a>
   
-  <button class="burger-menu" aria-label="Menu" aria-expanded="false">
+  <button class="burger-menu" aria-label="Menu mobile" aria-expanded="false">
     <span class="burger-bar"></span>
     <span class="burger-bar"></span>
     <span class="burger-bar"></span>
@@ -308,9 +336,8 @@
 
   <ul class="nav-links" role="list">
     <li><a href="#vision">Vision</a></li>
+    <li><a href="#pitch-video">Pitch</a></li>
     <li><a href="#experience">Parcours</a></li>
-    <li><a href="#proof">Réalisations</a></li>
-    <li><a href="#ai-process">Process IA</a></li>
     <li><a href="#creation">Création</a></li>
     <li><a href="#stack">Expertise</a></li>
     <li><a href="#looking">Je cherche</a></li>
@@ -390,7 +417,29 @@
   </div>
 </section>
 
-<div class="glow-sep" role="separator"></div>
+  <!-- SPOTLIGHT VIDEO -->
+  <section id="pitch-video" class="reveal section-container">
+    <div class="glass-card spotlight-card">
+      <div class="spotlight-text">
+        <span class="spotlight-label">Elevator Pitch</span>
+        <h2 class="spotlight-title">Tech Leader au service du <span style="color: var(--cyan)">Product ROI</span></h2>
+        <p class="spotlight-desc">
+          Découvrez en 2 minutes comment j'articule vision business, excellence technique et innovation (IA/RAG) pour propulser les plateformes e-commerce à haut trafic.
+        </p>
+        <div class="hero-actions" style="margin-top: 1rem; animation: none; opacity: 1;">
+          <a href="#contact" class="btn-primary" style="padding: 0.8rem 1.8rem; font-size: 0.75rem;">Discutons de votre projet</a>
+        </div>
+      </div>
+      <div class="video-container">
+        <video controls preload="metadata" aria-label="Vidéo de présentation de Thierry Thiesson">
+          <source src="promo-web.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la lecture de vidéos HTML5.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-sep" role="separator"></div>
 
 <!-- ========================
      VISION
