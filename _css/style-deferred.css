@@ -30,7 +30,10 @@
   color: var(--muted);
   line-height: 1.8;
   max-width: 580px;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
+}
+section {
+  padding: 130px 10vw 80px;
 }
 
 /* ===========================
@@ -1338,12 +1341,15 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   /* Mobile Burger Logic */
   .burger-menu {
     display: flex;
     order: 2;
     margin-right: -8px;
+    background: none;
+    border: none;
+    z-index: 1001;
   }
   .nav-links {
     display: flex;
@@ -1361,6 +1367,8 @@
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
+    padding-top: 80px;
+    box-shadow: none;
     transform: translateY(-20px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -1373,15 +1381,9 @@
   .nav-links a:focus {
     color: var(--purple);
   }
-  .nav-open .nav-links {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
   /* X transformation */
   .nav-open .burger-bar {
-    background: var(--bg);
+    background: var(--cyan);
   }
   .nav-open .burger-bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
@@ -1395,9 +1397,51 @@
   .nav-open {
     overflow: hidden;
   } /* Lock scroll when menu is open */
+  
+  .nav-links a {
+    color: var(--text);
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: var(--font-display);
+  }
+  .nav-links a:hover {
+    color: var(--cyan);
+  }
+  .jal-project {
+    padding: 1rem !important;
+  }
+  .jal-project h3 {
+    font-size: 1.4rem;
+  }
+  .jal-project .jal-gallery-item {
+    border: 1px solid var(--glass-border);
+  }
+}
+
+/* JAL GRID DESKTOP ALIGNMENT */
+.jal-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 1000px) {
+  .jal-gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
 }
 
 @media (max-width: 600px) {
+  section {
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+  }
+  .exp-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
   .impact-band {
     grid-template-columns: 1fr;
   }

@@ -1,47 +1,6 @@
 "use strict";
 
-/* ========================
-   CURSOR
-========================= */
-const cursor = document.getElementById("cursor");
-const ring = document.getElementById("cursorRing");
-let mx = 0,
-  my = 0,
-  rx = 0,
-  ry = 0;
 
-const isMobile = window.matchMedia("(hover: none) and (pointer: coarse), (max-width: 1000px)").matches;
-if (cursor && ring && !isMobile) {
-  document.addEventListener(
-    "mousemove",
-    (e) => {
-      mx = e.clientX;
-      my = e.clientY;
-    },
-    { passive: true },
-  );
-
-  (function loopCursor() {
-    cursor.style.left = mx + "px";
-    cursor.style.top = my + "px";
-    rx += (mx - rx) * 0.1;
-    ry += (my - ry) * 0.1;
-    ring.style.left = rx + "px";
-    ring.style.top = ry + "px";
-    requestAnimationFrame(loopCursor);
-  })();
-
-  document.querySelectorAll("a,button").forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      ring.style.transform = "translate(-50%,-50%) scale(1.8)";
-      ring.style.borderColor = "rgba(0,212,255,0.7)";
-    });
-    el.addEventListener("mouseleave", () => {
-      ring.style.transform = "translate(-50%,-50%) scale(1)";
-      ring.style.borderColor = "rgba(0,212,255,0.4)";
-    });
-  });
-}
 
 /* ========================
    PARTICLES CANVAS
@@ -57,8 +16,12 @@ if (canvas && ctx) {
   }
   resizeCanvas();
   window.addEventListener("resize", () => {
+    document.body.classList.add("resize-animation-stopper");
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(resizeCanvas, 200);
+    resizeTimer = setTimeout(() => {
+      resizeCanvas();
+      document.body.classList.remove("resize-animation-stopper");
+    }, 200);
   }, { passive: true });
 
   const pts = Array.from({ length: 60 }, () => ({
@@ -178,11 +141,8 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 ========================= */
 if (
   window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
-  cursor &&
   canvas
 ) {
-  cursor.style.display = "none";
-  ring.style.display = "none";
   canvas.style.display = "none";
 }
 
