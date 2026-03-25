@@ -1,0 +1,23 @@
+# Temporary and OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+.gemini/
+/tmp/
+node_modules/
+.env
+.agents/
+PRD.md
+ARCHITECTURE.md
+TODO.md
+task.md
+implementation_plan.md
+walkthrough.md
