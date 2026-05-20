@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mist3rth.github.io/presentMe/sitemap.xml
