@@ -2,7 +2,7 @@
 const scopeUrl = new URL(self.registration.scope);
 const BASE_PATH = scopeUrl.pathname.endsWith('/') ? scopeUrl.pathname : `${scopeUrl.pathname}/`;
 
-const CACHE_NAME = 'presentme-v2';
+const CACHE_NAME = 'presentme-v3-fixed-media';
 const ASSETS_TO_CACHE = [
   BASE_PATH,
   `${BASE_PATH}index.html`,
@@ -41,6 +41,16 @@ self.addEventListener('activate', (event) => {
 // Fetch event - Cache-First for static assets, Stale-While-Revalidate for JS/CSS/Fonts/Images
 self.addEventListener('fetch', (event) => {
   const requestUrl = new URL(event.request.url);
+
+  // 1. NE JAMAIS intercepter les requêtes média (vidéos) ou les requêtes de streaming partiel (Range)
+  // Les Service Workers ne gèrent pas le streaming partiel de façon native et provoquent des blocages/lags sévères.
+  if (
+    event.request.headers.get('range') ||
+    requestUrl.pathname.match(/\.(mp4|webm|ogg|wav|mp3)$/i) ||
+    requestUrl.pathname.includes('/videos/')
+  ) {
+    return; // Laisser le navigateur effectuer la requête de streaming en direct
+  }
 
   // We only intercept requests for our own origin or static CDNs like google fonts
   if (
