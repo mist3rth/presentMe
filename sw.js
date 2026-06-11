@@ -2,7 +2,7 @@
 const scopeUrl = new URL(self.registration.scope);
 const BASE_PATH = scopeUrl.pathname.endsWith('/') ? scopeUrl.pathname : `${scopeUrl.pathname}/`;
 
-const CACHE_NAME = 'presentme-v3-fixed-media';
+const CACHE_NAME = 'presentme-v4-scroll-dots';
 const ASSETS_TO_CACHE = [
   BASE_PATH,
   `${BASE_PATH}index.html`,
