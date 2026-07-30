@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import Lenis from 'lenis';
 import Header from './components/Header';
 import ProfileCard from './components/ProfileCard';
 import GradualBlur from './components/GradualBlur';
@@ -53,8 +54,6 @@ export type Project = {
   conclusionB?: string;
   conclusionVideo?: string;
 };
-
-import Lenis from 'lenis';
 
 export default function App() {
   const [gradientPreset] = useState<PresetKey>('sunset');
