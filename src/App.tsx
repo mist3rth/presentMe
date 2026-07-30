@@ -15,6 +15,7 @@ const ScrollVelocity  = lazy(() => import('./components/ScrollVelocity'));
 const MethodeSection  = lazy(() => import('./components/MethodeSection'));
 const ProjetsSection  = lazy(() => import('./components/ProjetsSection'));
 const ParcoursSection = lazy(() => import('./components/ParcoursSection'));
+const ProjectModal    = lazy(() => import('./components/ProjectModal').then(m => ({ default: m.ProjectModal })));
 
 
 import earthOrangeBg from './assets/earth_orange_bg.webp';
