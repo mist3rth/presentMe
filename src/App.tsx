@@ -990,7 +990,7 @@ export default function App() {
                 href="#contact" 
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('contact')?.scrollIntoView();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
                 className="text-[#F97316] hover:underline font-medium"
               >
@@ -998,13 +998,18 @@ export default function App() {
               </a>
             </p>
           </div>
-
-          {/* Right Column: Interactive Accordion */}
           <div className="lg:col-span-7 flex flex-col divide-y divide-white/10">
             {faqData.map((item, idx) => {
               const isOpen = openFaq === idx;
               return (
-                <div key={idx} className="py-6 first:pt-0 last:pb-0">
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                  className="py-6 first:pt-0 last:pb-0"
+                >
                   <button
                     id={`faq-question-${idx}`}
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
@@ -1041,7 +1046,7 @@ export default function App() {
                       {item.answer}
                     </p>
                   </motion.div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
