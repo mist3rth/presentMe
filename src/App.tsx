@@ -631,7 +631,7 @@ export default function App() {
         className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 pt-24 md:pt-32 pb-0 border-t border-white/5 scroll-mt-24"
       >
         {/* Section Header - Sticky with background to stay visible above the cards */}
-        <div className="sticky top-[85px] z-40 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 bg-[#050302] border-b border-white/5 mb-16">
+        <div className="sticky top-[80px] z-40 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 bg-[#050302] border-b border-white/5 mb-16">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <span className="inline-flex items-end select-none tracking-tight">
@@ -656,14 +656,14 @@ export default function App() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-12 mt-12 mb-0 relative pb-16">
+        <div className="flex flex-col gap-12 mt-12 mb-12 relative pb-8">
           {/* Row 1 */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="sticky top-[140px] z-10 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[240px] z-10 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
@@ -712,7 +712,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="sticky top-[160px] z-20 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[240px] z-20 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
@@ -761,7 +761,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="sticky top-[180px] z-30 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[240px] z-30 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
