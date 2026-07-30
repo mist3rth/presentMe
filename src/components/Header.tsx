@@ -46,12 +46,12 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ${
+      <header className={`fixed top-0 left-0 right-0 z-[200] max-w-full transition-all duration-300 ${
         isScrolled || isMenuOpen
-          ? "bg-[#050302]/95 backdrop-blur-md border-b border-white/10 py-4 shadow-lg shadow-black/40" 
-          : "bg-[#050302]/80 md:bg-transparent border-b border-white/5 md:border-transparent py-4 md:py-6 backdrop-blur-sm md:backdrop-blur-none"
+          ? "bg-[#050302]/95 backdrop-blur-md border-b border-white/10 py-3 md:py-4 shadow-lg shadow-black/40" 
+          : "bg-[#050302]/80 md:bg-transparent border-b border-white/5 md:border-transparent py-3 md:py-6 backdrop-blur-sm md:backdrop-blur-none"
       }`}>
-        <div className="max-w-6xl mx-auto px-6 md:px-12 flex justify-between items-center w-full">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 flex justify-between items-center w-full">
           {/* Logo */}
           <div 
             className="flex items-center gap-3 group cursor-pointer shrink-0"
