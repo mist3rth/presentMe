@@ -23,8 +23,8 @@ export default defineConfig(() => {
         output: {
           manualChunks: {
             'vendor-react': ['react', 'react-dom'],
-            'vendor-framer': ['framer-motion'],
-            'vendor-three': ['three', '@react-three/fiber', '@react-three/drei'],
+            'vendor-motion': ['motion', 'framer-motion'],
+            'vendor-gsap': ['gsap'],
             'vendor-lucide': ['lucide-react'],
           },
         },
@@ -32,5 +32,6 @@ export default defineConfig(() => {
       // Augmenter le seuil d'avertissement pour les chunks intentionnels
       chunkSizeWarningLimit: 800,
     },
+
   };
 });

@@ -3,20 +3,24 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronDown, ArrowUpRight, CheckCircle2, ArrowLeft, ExternalLink } from 'lucide-react';
 import Header from './components/Header';
 import ProfileCard from './components/ProfileCard';
-import ParcoursSection from './components/ParcoursSection';
-import MethodeSection from './components/MethodeSection';
-import ProjetsSection, { projects, Project } from './components/ProjetsSection';
 import GradualBlur from './components/GradualBlur';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { BackToTop } from './components/ui/BackToTop';
 import { liveProjects, faqData, presets } from './data/portfolioData';
 import { ScrollStepIndicator } from './components/ui/ScrollStepIndicator';
-import { ProjectModal } from './components/ProjectModal';
 import { Grid } from './components/ui/GridPattern';
+import { useInView } from './hooks/useInView';
 
-import FloatingLines from './components/FloatingLines';
-const ScrollVelocity = lazy(() => import('./components/ScrollVelocity'));
-const Cubes = lazy(() => import('./components/Cubes'));
+
+// --- Lazy-loaded components (chargés à la demande, pas au démarrage) ---
+const FloatingLines   = lazy(() => import('./components/FloatingLines'));
+const ScrollVelocity  = lazy(() => import('./components/ScrollVelocity'));
+const Cubes           = lazy(() => import('./components/Cubes'));
+const MethodeSection  = lazy(() => import('./components/MethodeSection'));
+const ProjetsSection  = lazy(() => import('./components/ProjetsSection'));
+const ParcoursSection = lazy(() => import('./components/ParcoursSection'));
+const ProjectModal    = lazy(() => import('./components/ProjectModal').then(m => ({ default: m.ProjectModal })));
+
 
 // @ts-ignore
 import earthOrangeBg from './assets/earth_orange_bg.webp';
@@ -24,6 +28,31 @@ import earthOrangeBg from './assets/earth_orange_bg.webp';
 import hommeWebp from './assets/homme.webp';
 
 export type PresetKey = 'sunset' | 'aurora' | 'ocean' | 'neon';
+
+// Type Project défini ici pour éviter l'import statique de ProjetsSection
+// (permet le lazy-loading réel de ProjetsSection)
+export type Project = {
+  id: string;
+  title: string;
+  category: string;
+  type: 'digital' | 'artistic';
+  duration: string;
+  roleOrTools: string;
+  link?: string;
+  imageUrl: string;
+  description: string;
+  brief?: string;
+  stack?: string[];
+  workflow?: { step: string; title: string; desc: string }[];
+  benefits?: string[];
+  conclusion?: string;
+  overviewA?: string;
+  overviewB?: string;
+  overviewC?: string;
+  conclusionA?: string;
+  conclusionB?: string;
+  conclusionVideo?: string;
+};
 
 export default function App() {
   const [lineCount] = useState<number>(9);
@@ -36,11 +65,13 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
-    const handleHashChange = () => {
+    const handleHashChange = async () => {
       const hash = window.location.hash;
       if (hash.startsWith('#projet-')) {
         const projectId = hash.replace('#projet-', '');
-        const found = projects.find(p => p.id === projectId);
+        // Charge ProjetsSection dynamiquement uniquement quand un hash est détecté
+        const { projects } = await import('./components/ProjetsSection');
+        const found = projects.find((p: { id: string }) => p.id === projectId);
         if (found) {
           setSelectedProject(found);
           return;
@@ -68,9 +99,10 @@ export default function App() {
     };
   }, [selectedProject]);
 
-  const handleNextProject = () => {
+  const handleNextProject = async () => {
     if (!selectedProject) return;
-    const currentIndex = projects.findIndex(p => p.id === selectedProject.id);
+    const { projects } = await import('./components/ProjetsSection');
+    const currentIndex = projects.findIndex((p: { id: string }) => p.id === selectedProject.id);
     const nextIndex = (currentIndex + 1) % projects.length;
     window.location.hash = `projet-${projects[nextIndex].id}`;
   };
@@ -105,6 +137,15 @@ export default function App() {
   const slashesX = useTransform(methodoScrollY, [0, 1], [0, 200]);
 
   const activePreset = presets[gradientPreset];
+
+  // --- IntersectionObserver sentinels pour le lazy-rendering des sections ---
+  // Les sections sont montées uniquement quand le scroll s'approche à 300px
+  const { ref: scrollVelRef, inView: scrollVelInView }   = useInView({ rootMargin: '300px' });
+  const { ref: cubesSentinelRef, inView: cubesInView }   = useInView({ rootMargin: '300px' });
+  const { ref: methodeSentinelRef, inView: methodeInView } = useInView({ rootMargin: '300px' });
+  const { ref: projetsSentinelRef, inView: projetsInView } = useInView({ rootMargin: '300px' });
+  const { ref: parcoursSentinelRef, inView: parcoursInView } = useInView({ rootMargin: '300px' });
+
 
   return (
     <div className="relative min-h-screen bg-[#050302] text-white flex flex-col font-sans selection:bg-[#F97316] selection:text-white">
@@ -326,7 +367,10 @@ export default function App() {
 
       {/* SECTION SCROLL VELOCITY / MARQUEE */}
       <section className="relative z-30 w-full overflow-hidden border-t border-b border-white/5 bg-black/20 py-8 my-8 md:my-12">
+        {/* Sentinel: ScrollVelocity ne se monte que quand visible */}
+        <div ref={scrollVelRef} className="absolute inset-0 pointer-events-none" aria-hidden="true" />
         <Suspense fallback={<div className="h-24 w-full" />}>
+          {scrollVelInView && (
           <ScrollVelocity
             texts={[
               <div className="inline-flex items-center gap-8 pr-8 select-none">
@@ -360,6 +404,7 @@ export default function App() {
             damping={50}
             stiffness={300}
           />
+          )}
         </Suspense>
       </section>
 
@@ -781,10 +826,10 @@ export default function App() {
         <div className="absolute inset-y-0 right-0 w-[1px] bg-white/5 pointer-events-none" />
         <div className="absolute inset-y-0 left-1/3 w-[1px] bg-white/5 hidden md:block pointer-events-none" />
 
-        {/* Interactive Cubes Background with custom styles and orange faceColor */}
-        <div className="absolute inset-0 z-0 opacity-20 hover:opacity-40 transition-opacity duration-500 pointer-events-auto">
+        {/* Interactive Cubes Background — sentinel + lazy mount */}
+        <div ref={cubesSentinelRef} className="absolute inset-0 z-0 opacity-20 hover:opacity-40 transition-opacity duration-500 pointer-events-auto">
           <Suspense fallback={null}>
-            <Cubes 
+            {cubesInView && <Cubes 
               gridSize={8}
               maxAngle={45}
               radius={3.5}
@@ -794,7 +839,7 @@ export default function App() {
               rippleSpeed={1.8}
               autoAnimate
               rippleOnClick
-            />
+            />}
           </Suspense>
         </div>
 
@@ -813,11 +858,26 @@ export default function App() {
         </div>
       </section>
 
-      <MethodeSection />
+      {/* MethodeSection — sentinel IntersectionObserver */}
+      <div ref={methodeSentinelRef}>
+        <Suspense fallback={<div className="h-96 w-full" />}>
+          {methodeInView && <MethodeSection />}
+        </Suspense>
+      </div>
 
-      <ProjetsSection />
+      {/* ProjetsSection — sentinel IntersectionObserver */}
+      <div ref={projetsSentinelRef}>
+        <Suspense fallback={<div className="h-96 w-full" />}>
+          {projetsInView && <ProjetsSection />}
+        </Suspense>
+      </div>
 
-      <ParcoursSection />
+      {/* ParcoursSection — sentinel IntersectionObserver */}
+      <div ref={parcoursSentinelRef}>
+        <Suspense fallback={<div className="h-64 w-full" />}>
+          {parcoursInView && <ParcoursSection />}
+        </Suspense>
+      </div>
 
       {/* SECTION CONTACT */}
       <section 
@@ -1139,14 +1199,18 @@ export default function App() {
         zIndex={50}
       />
       
-      {/* Project Page Full-screen Root-level Overlay (z-[120] to avoid conflicts) */}
-      <AnimatePresence>
-        <ProjectModal 
-          project={selectedProject} 
-          onClose={() => setSelectedProject(null)} 
-          onNext={handleNextProject} 
-        />
-      </AnimatePresence>
+      {/* ProjectModal — chargé en lazy uniquement quand un projet est ouvert */}
+      {selectedProject && (
+        <Suspense fallback={null}>
+          <AnimatePresence>
+            <ProjectModal 
+              project={selectedProject} 
+              onClose={() => setSelectedProject(null)} 
+              onNext={handleNextProject} 
+            />
+          </AnimatePresence>
+        </Suspense>
+      )}
 
       <BackToTop />
     </div>
