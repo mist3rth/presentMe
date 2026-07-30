@@ -45,19 +45,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
     >
       {/* Main Contents */}
       {project.type === 'digital' ? (
-        <div className="flex-1 w-full max-w-7xl mx-auto px-6 md:px-12 pt-12 pb-24 md:pt-16 md:pb-28">
-          {/* Hero visual inside page */}
-          <div className="relative aspect-[21/9] w-full border border-white/10 overflow-hidden mb-8 rounded-none">
+        <div className="flex-1 w-full pb-24 md:pb-28 flex flex-col">
+          {/* Hero visual inside page - Full Width Viewport with scroll zoom */}
+          <div className="relative h-[55vh] w-full border-b border-white/10 overflow-hidden mb-12 rounded-none">
             <img 
               src={project.imageUrl} 
               alt={project.title}
               referrerPolicy="no-referrer"
-              className="absolute inset-0 w-full h-[130%] object-cover project-modal-hero-image"
+              className="absolute inset-0 w-full h-[130%] object-cover project-modal-hero-image-zoom"
             />
           </div>
 
-          {/* Title & Category Info */}
-          <div className="relative bg-gradient-to-b from-[#241a17] to-[#120d0c] border border-white/20 p-8 rounded-none overflow-hidden flex flex-col gap-2 mb-8">
+          <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col">
+            {/* Title & Category Info */}
+            <div className="relative bg-gradient-to-b from-[#241a17] to-[#120d0c] border border-white/20 p-8 rounded-none overflow-hidden flex flex-col gap-2 mb-8">
             <Grid size={24} />
             <div className="relative z-20 flex flex-col gap-2">
               <span className="self-start text-[10px] font-mono tracking-widest text-black bg-[#F97316] font-black px-3 py-1 uppercase">
@@ -298,9 +299,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                 ))}
               </div>
             </div>
+            </div>
           </div>
-
-
         </div>
       ) : (
         <div className="flex-1 w-full pb-24 md:pb-28 flex flex-col">
