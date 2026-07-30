@@ -78,7 +78,7 @@ export default function ParcoursSection() {
     <section 
       id="parcours" 
       ref={sectionRef}
-      className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-32 md:py-40 overflow-visible border-t border-white/5 scroll-mt-48"
+      className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-32 md:py-40 overflow-visible border-t border-white/5 scroll-mt-32"
     >
       {/* Structural side lines matching grid layout */}
       <div className="absolute inset-y-0 left-0 w-[1px] bg-white/5 pointer-events-none" />

@@ -303,7 +303,7 @@ export default function App() {
       <section 
         id="manifeste" 
         ref={methodoRef}
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-48 overflow-hidden"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-32 overflow-hidden"
       >
         {/* Background decorative slashes /// */}
         <motion.div 
@@ -401,7 +401,7 @@ export default function App() {
       <section 
         id="expertises" 
         ref={expertiseContainerRef}
-        className="relative z-30 w-full border-t border-white/5 scroll-mt-48 overflow-hidden"
+        className="relative z-30 w-full border-t border-white/5 scroll-mt-32 overflow-hidden"
       >
         {/* Background Image Container with parallax/blend effects */}
         <div 
@@ -547,10 +547,10 @@ export default function App() {
       </section>
 
       {/* SECTION CITATION / COLLABORATION */}
-      <div id="vision-manifeste" className="scroll-mt-48" />
+      <div id="vision-manifeste" className="scroll-mt-32" />
       <section 
         id="vision-manifeste-quote" 
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-48 overflow-hidden"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-32 overflow-hidden"
       >
         {/* Background decorative slashes /// */}
         <div className="absolute right-4 bottom-4 md:right-12 md:bottom-8 pointer-events-none select-none text-[150px] sm:text-[220px] md:text-[300px] font-black text-[#F97316] opacity-[0.15] leading-none tracking-tighter">
@@ -628,7 +628,7 @@ export default function App() {
 
       {/* SECTION: 9 leviers de valeur */}
       <section 
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 pt-24 md:pt-32 pb-0 border-t border-white/5 scroll-mt-48"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 pt-24 md:pt-32 pb-0 border-t border-white/5 scroll-mt-32"
       >
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 border-b border-white/5 mb-16">
@@ -809,7 +809,7 @@ export default function App() {
       {/* SECTION: WHO IT IS FOR (DIFFÉRENTES ÉQUIPES. MÊME CLARTÉ.) */}
       <section 
         id="methodologie"
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-32 md:py-40 overflow-hidden flex flex-col items-center justify-center min-h-[600px] scroll-mt-48"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-32 md:py-40 overflow-hidden flex flex-col items-center justify-center min-h-[600px] scroll-mt-32"
       >
         {/* Fine vertical guide lines matching the page's structural grid lines */}
         <div className="absolute inset-y-0 left-0 w-[1px] bg-white/5 pointer-events-none" />
@@ -864,7 +864,7 @@ export default function App() {
       {/* SECTION CONTACT */}
       <section 
         id="contact" 
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-48"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-32"
       >
         <div className="flex flex-col gap-12">
           
@@ -979,7 +979,7 @@ export default function App() {
       {/* SECTION FAQ */}
       <section 
         id="faq" 
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-48"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-32"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Title & CTA */}
