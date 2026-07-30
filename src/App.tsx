@@ -26,6 +26,11 @@ import earthOrangeBg from './assets/earth_orange_bg.webp';
 import hommeWebp from './assets/homme.webp';
 // @ts-ignore
 import heroWebp from './assets/hero.webp';
+import bigleafImg from './assets/bigleaf.webp';
+import elgustoImg from './assets/elgusto.webp';
+import vaAthleticImg from './assets/vaathletic.webp';
+import primeImmobilierImg from './assets/primeimmobilier.webp';
+import japonImg from './assets/japon.webp';
 
 export type PresetKey = 'sunset' | 'aurora' | 'ocean' | 'neon';
 
@@ -1122,29 +1127,29 @@ export default function App() {
           <div className="flex justify-center gap-4 min-w-max px-4">
             {[
               {
-                url: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80",
+                url: bigleafImg,
+                alt: "Big Leaf - Application Mobile & Web3",
+                title: "Big Leaf"
+              },
+              {
+                url: elgustoImg,
                 alt: "El Gusto - Haute Gastronomie",
                 title: "El Gusto"
               },
               {
-                url: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
+                url: vaAthleticImg,
                 alt: "VA Athletic - Private Coaching",
                 title: "VA Athletic"
               },
               {
-                url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+                url: primeImmobilierImg,
                 alt: "Prime Immobilier - Prestige",
                 title: "Prime Immobilier"
               },
               {
-                url: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&w=800&q=80",
-                alt: "Synapse - Knowledge Graph",
-                title: "Synapse"
-              },
-              {
-                url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-                alt: "Analytics Engine - Data Viz",
-                title: "Analytics Engine"
+                url: japonImg,
+                alt: "Soleil Levant - Photographie & IA",
+                title: "Soleil Levant"
               }
             ].map((img, idx) => (
               <div 
