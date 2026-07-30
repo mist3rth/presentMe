@@ -142,10 +142,10 @@ export default function App() {
 
 
   return (
-    <div className="relative min-h-screen bg-[#050302] text-white flex flex-col font-sans selection:bg-[#F97316] selection:text-white">
+    <div className="relative min-h-screen bg-[#050302] text-white flex flex-col font-sans selection:bg-[#F97316] selection:text-white overflow-x-hidden">
       <Header />
       {/* Main Content Wrapper for Sticky Footer Reveal */}
-      <div className="relative z-20 bg-[#050302] shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col w-full pb-16">
+      <div className="relative z-20 bg-[#050302] shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col w-full pb-16 overflow-x-hidden">
         {/* GRID OVERLAY */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none opacity-20 z-0"></div>
 
