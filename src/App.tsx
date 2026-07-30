@@ -13,9 +13,7 @@ import { useInView } from './hooks/useInView';
 
 
 // --- Lazy-loaded components (chargés à la demande, pas au démarrage) ---
-const FloatingLines   = lazy(() => import('./components/FloatingLines'));
 const ScrollVelocity  = lazy(() => import('./components/ScrollVelocity'));
-const Cubes           = lazy(() => import('./components/Cubes'));
 const MethodeSection  = lazy(() => import('./components/MethodeSection'));
 const ProjetsSection  = lazy(() => import('./components/ProjetsSection'));
 const ParcoursSection = lazy(() => import('./components/ParcoursSection'));
@@ -26,6 +24,8 @@ const ProjectModal    = lazy(() => import('./components/ProjectModal').then(m =>
 import earthOrangeBg from './assets/earth_orange_bg.webp';
 // @ts-ignore
 import hommeWebp from './assets/homme.webp';
+// @ts-ignore
+import heroWebp from './assets/hero.webp';
 
 export type PresetKey = 'sunset' | 'aurora' | 'ocean' | 'neon';
 
@@ -55,11 +55,6 @@ export type Project = {
 };
 
 export default function App() {
-  const [lineCount] = useState<number>(9);
-  const [lineDistance] = useState<number>(47);
-  const [animationSpeed] = useState<number>(0);
-  const [interactive] = useState<boolean>(false);
-  const [parallax] = useState<boolean>(false);
   const [gradientPreset] = useState<PresetKey>('sunset');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -141,7 +136,6 @@ export default function App() {
   // --- IntersectionObserver sentinels pour le lazy-rendering des sections ---
   // Les sections sont montées uniquement quand le scroll s'approche à 300px
   const { ref: scrollVelRef, inView: scrollVelInView }   = useInView({ rootMargin: '300px' });
-  const { ref: cubesSentinelRef, inView: cubesInView }   = useInView({ rootMargin: '300px' });
   const { ref: methodeSentinelRef, inView: methodeInView } = useInView({ rootMargin: '300px' });
   const { ref: projetsSentinelRef, inView: projetsInView } = useInView({ rootMargin: '300px' });
   const { ref: parcoursSentinelRef, inView: parcoursInView } = useInView({ rootMargin: '300px' });
@@ -165,23 +159,16 @@ export default function App() {
         style={{ backgroundColor: activePreset.end }}
       />
 
-      {/* Floating Lines Background */}
-      <div className="absolute top-0 left-0 w-full h-[800px] z-10 pointer-events-none opacity-90">
-        <Suspense fallback={null}>
-          <FloatingLines
-            enabledWaves={['top', 'middle', 'bottom']}
-            lineCount={lineCount}
-            lineDistance={lineDistance}
-            bendRadius={8}
-            bendStrength={-2}
-            interactive={interactive}
-            parallax={parallax}
-            animationSpeed={animationSpeed}
-            gradientStart={activePreset.start}
-            gradientMid={activePreset.mid}
-            gradientEnd={activePreset.end}
-          />
-        </Suspense>
+      {/* Hero Background — image statique WebP (remplace FloatingLines Three.js) */}
+      <div className="absolute top-0 left-0 w-full h-[800px] z-10 pointer-events-none" aria-hidden="true">
+        <img
+          src={heroWebp}
+          alt=""
+          fetchpriority="high"
+          decoding="async"
+          className="w-full h-full object-cover object-center opacity-60"
+          style={{ maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)' }}
+        />
       </div>
 
       {/* Main Hero Stage Container */}
@@ -826,22 +813,14 @@ export default function App() {
         <div className="absolute inset-y-0 right-0 w-[1px] bg-white/5 pointer-events-none" />
         <div className="absolute inset-y-0 left-1/3 w-[1px] bg-white/5 hidden md:block pointer-events-none" />
 
-        {/* Interactive Cubes Background — sentinel + lazy mount */}
-        <div ref={cubesSentinelRef} className="absolute inset-0 z-0 opacity-20 hover:opacity-40 transition-opacity duration-500 pointer-events-auto">
-          <Suspense fallback={null}>
-            {cubesInView && <Cubes 
-              gridSize={8}
-              maxAngle={45}
-              radius={3.5}
-              borderStyle="2px dashed rgba(249, 115, 22, 0.4)"
-              faceColor="#F97316"
-              rippleColor="#ffffff"
-              rippleSpeed={1.8}
-              autoAnimate
-              rippleOnClick
-            />}
-          </Suspense>
-        </div>
+        {/* Fond dégradé CSS — remplace les Cubes GSAP (0 KB de JS, 0 canvas) */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(249,115,22,0.07) 0%, transparent 70%), repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(249,115,22,0.04) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(249,115,22,0.04) 40px)',
+          }}
+        />
 
         {/* Centered Content */}
         <div className="relative z-10 flex flex-col items-center text-center gap-6 max-w-2xl pointer-events-none">
