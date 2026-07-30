@@ -54,10 +54,37 @@ export type Project = {
   conclusionVideo?: string;
 };
 
+import Lenis from 'lenis';
+
 export default function App() {
   const [gradientPreset] = useState<PresetKey>('sunset');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  // Initialisation de Lenis (Smooth Scroll premium pour Desktop, natif sur mobile)
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    const rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     const handleHashChange = async () => {
