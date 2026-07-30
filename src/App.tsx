@@ -164,7 +164,7 @@ export default function App() {
         <img
           src={heroWebp}
           alt=""
-          fetchpriority="high"
+          fetchPriority="high"
           decoding="async"
           className="w-full h-full object-cover object-center opacity-60"
           style={{ maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)' }}
