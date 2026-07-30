@@ -48,13 +48,13 @@ export default function Header() {
     <>
       <header className={`fixed top-0 left-0 right-0 z-[130] transition-all duration-300 ${
         isScrolled || isMenuOpen
-          ? "bg-[#050302]/85 backdrop-blur-md border-b border-white/10 py-4 shadow-lg shadow-black/20" 
+          ? "bg-[#050302]/90 backdrop-blur-md border-b border-white/10 py-4 shadow-lg shadow-black/20" 
           : "bg-transparent border-b border-transparent py-6"
       }`}>
-        <div className="max-w-6xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        <div className="max-w-6xl mx-auto px-6 md:px-12 flex justify-between items-center w-full">
           {/* Logo */}
           <div 
-            className="flex items-center gap-3 group cursor-pointer"
+            className="flex items-center gap-3 group cursor-pointer shrink-0"
             onClick={() => {
               setIsMenuOpen(false);
               window.location.hash = '';
@@ -111,14 +111,11 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex md:hidden text-white hover:text-[#F97316] transition-colors p-2 focus:outline-none cursor-pointer z-50"
+            className="flex md:hidden text-white hover:text-[#F97316] transition-colors p-2 focus:outline-none cursor-pointer shrink-0 z-50"
             aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-
-          {/* Spacer to balance logo width and keep nav centered on desktop */}
-          <div className="w-32 hidden md:block" />
         </div>
       </header>
 
