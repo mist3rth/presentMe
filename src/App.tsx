@@ -253,13 +253,14 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
-            className="flex flex-col sm:flex-row items-center gap-8 w-full md:w-auto"
+            className="flex flex-col sm:flex-row items-center gap-8 w-full md:w-auto relative z-30 pointer-events-auto"
           >
             {/* CTA Principal (Bouton Magnétique Inversable) */}
             <a
               href="#methodologie"
               onClick={(e) => {
                 e.preventDefault();
+                window.location.hash = 'methodologie';
                 document.getElementById('methodologie')?.scrollIntoView({ behavior: 'smooth' });
               }}
               className="group relative w-full sm:w-60 h-16 rounded-none border border-white/20 bg-black text-white hover:text-black hover:border-white overflow-hidden transition-colors duration-500 cursor-pointer active:scale-95 flex items-center justify-center font-mono text-xs uppercase tracking-widest text-center shadow-2xl shadow-black/50"
@@ -276,9 +277,10 @@ export default function App() {
               href="#projets"
               onClick={(e) => {
                 e.preventDefault();
+                window.location.hash = 'projets';
                 document.getElementById('projets')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group text-sm font-semibold text-white/80 hover:text-white transition-colors duration-300 relative py-2"
+              className="group text-sm font-semibold text-white/80 hover:text-white transition-colors duration-300 relative py-2 cursor-pointer"
             >
               <span>Voir les cas d'étude &rarr;</span>
               {/* Kinetic line */}
