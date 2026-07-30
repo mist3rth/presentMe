@@ -808,7 +808,8 @@ export default function App() {
 
       {/* SECTION: WHO IT IS FOR (DIFFÉRENTES ÉQUIPES. MÊME CLARTÉ.) */}
       <section 
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-32 md:py-40 overflow-hidden flex flex-col items-center justify-center min-h-[600px]"
+        id="methodologie"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-32 md:py-40 overflow-hidden flex flex-col items-center justify-center min-h-[600px] scroll-mt-24"
       >
         {/* Fine vertical guide lines matching the page's structural grid lines */}
         <div className="absolute inset-y-0 left-0 w-[1px] bg-white/5 pointer-events-none" />
