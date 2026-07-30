@@ -17,11 +17,8 @@ const ProjetsSection  = lazy(() => import('./components/ProjetsSection'));
 const ParcoursSection = lazy(() => import('./components/ParcoursSection'));
 
 
-// @ts-ignore
 import earthOrangeBg from './assets/earth_orange_bg.webp';
-// @ts-ignore
 import hommeWebp from './assets/homme.webp';
-// @ts-ignore
 import heroWebp from './assets/hero.webp';
 import bigleafImg from './assets/bigleaf.webp';
 import elgustoImg from './assets/elgusto.webp';
