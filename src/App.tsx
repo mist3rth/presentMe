@@ -630,8 +630,8 @@ export default function App() {
       <section 
         className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 pt-24 md:pt-32 pb-0 border-t border-white/5 scroll-mt-24"
       >
-        {/* Section Header - Sticky with background to stay visible above the cards */}
-        <div className="sticky top-[80px] z-40 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 bg-[#050302] border-b border-white/5 mb-16">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 border-b border-white/5 mb-16">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <span className="inline-flex items-end select-none tracking-tight">
