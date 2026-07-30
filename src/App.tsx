@@ -656,14 +656,14 @@ export default function App() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-12 mt-12 mb-24 md:mb-32 relative">
+        <div className="flex flex-col gap-12 mt-12 mb-0 relative pb-16">
           {/* Row 1 */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="sticky top-[200px] z-10 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[140px] z-10 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
@@ -712,7 +712,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="sticky top-[200px] z-20 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[160px] z-20 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
@@ -761,7 +761,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="sticky top-[200px] z-30 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[180px] z-30 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
