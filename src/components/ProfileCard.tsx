@@ -459,10 +459,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       )}
       <div ref={shellRef} className="relative z-[1] group">
         <section
-          className="grid relative overflow-hidden"
+          className="grid relative overflow-hidden w-full"
           style={{
-            height: '80svh',
-            maxHeight: '540px',
+            height: 'min(75svh, 540px)',
+            maxWidth: '100%',
             aspectRatio: '0.718',
             borderRadius: cardRadius,
             backgroundBlendMode: 'color-dodge, normal, normal, normal',
