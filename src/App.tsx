@@ -1,14 +1,12 @@
 import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
-import { ArrowRight, ChevronDown, ArrowUpRight, CheckCircle2, ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowRight, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import Header from './components/Header';
 import ProfileCard from './components/ProfileCard';
 import GradualBlur from './components/GradualBlur';
-import { ErrorBoundary } from './components/ErrorBoundary';
 import { BackToTop } from './components/ui/BackToTop';
-import { liveProjects, faqData, presets } from './data/portfolioData';
+import { faqData, presets } from './data/portfolioData';
 import { ScrollStepIndicator } from './components/ui/ScrollStepIndicator';
-import { Grid } from './components/ui/GridPattern';
 import { useInView } from './hooks/useInView';
 
 
@@ -17,7 +15,6 @@ const ScrollVelocity  = lazy(() => import('./components/ScrollVelocity'));
 const MethodeSection  = lazy(() => import('./components/MethodeSection'));
 const ProjetsSection  = lazy(() => import('./components/ProjetsSection'));
 const ParcoursSection = lazy(() => import('./components/ParcoursSection'));
-const ProjectModal    = lazy(() => import('./components/ProjectModal').then(m => ({ default: m.ProjectModal })));
 
 
 // @ts-ignore
