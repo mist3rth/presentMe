@@ -603,7 +603,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
             className="lg:col-span-5 flex flex-col items-center lg:items-end w-full"
           >
-            <div className="w-full max-w-[360px] flex flex-col gap-4">
+            <div className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] mx-auto lg:mr-0 flex flex-col gap-4">
               <ProfileCard
                 name="Thierry Thiesson"
                 title="Architecte Digital & Designer"
