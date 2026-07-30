@@ -1,0 +1,6 @@
+{
+  "name": "Hero Section with Floating Lines",
+  "description": "A beautiful, interactive hero section featuring customized glowing floating lines in the background.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

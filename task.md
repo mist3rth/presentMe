@@ -1,0 +1,24 @@
+- [x] Phase 1 : Préparation & Outillage (Shield Pro)
+  - [x] Activer TS `strict` dans `tsconfig.json`
+  - [x] Créer l'utilitaire `src/utils/logger.ts` (`log.dev()`)
+  - [x] Créer le composant `ErrorBoundary` dans `src/components/`
+- [x] Phase 2 : Extraction UI (Dry Mode)
+  - [x] Créer `src/components/ui/ButtonMagnetic.tsx`
+  - [x] Créer `src/components/ui/LinkKinetic.tsx`
+  - [x] Créer `src/components/ui/SectionHeader.tsx`
+  - [x] Créer `src/components/ui/ExpertiseCard.tsx`
+  - [x] Créer `src/components/ui/ValueDriverRow.tsx`
+- [x] Phase 3 : Découpage des Sections (Slicing)
+  - [x] Extraire `HeroSection`
+  - [x] Extraire `MethodologySection`
+  - [x] Extraire `ExpertisesSection`
+  - [x] Extraire `ValueDriversSection`
+  - [x] Extraire `AudienceSection`
+  - [x] Extraire `FAQSection`
+- [x] Phase 4 : Polish, Améliorations UX & SEO (Polish Grail)
+  - [x] Remplacer `earth_orange_bg.jpeg` par `.webp` dans le code
+  - [x] Implémenter le Lazy-Loading des composants complexes
+  - [x] Ajouter un bouton "Retour en haut" dynamique
+  - [x] Renforcer l'accessibilité (A11y clavier FAQ + aria-labels)
+  - [x] Implémenter les Meta-tags et JSON-LD
+  - [x] Nettoyage final et formatage globales et formater

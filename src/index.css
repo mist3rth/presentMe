@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+html, body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+@keyframes scroll-line {
+  0% { transform: translateY(-100%); }
+  50% { transform: translateY(100%); }
+  100% { transform: translateY(100%); }
+}
+
+@theme {
+  --animate-spin-slow: spin 12s linear infinite;
+  --animate-scroll-line: scroll-line 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  --font-sans: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090504;
+}
+::-webkit-scrollbar-thumb {
+  background: #1c100a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a180f;
+}
+/* Parallax scroll-driven animation for project modal hero image */
+.project-modal-container {
+  scroll-timeline: --modal-scroll y;
+  scroll-timeline-name: --modal-scroll;
+  scroll-timeline-axis: block;
+}
+
+.project-modal-hero-image {
+  animation: parallax-slide linear both;
+  animation-timeline: --modal-scroll;
+  animation-range: 0px 600px;
+}
+
+@keyframes parallax-slide {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-80px);
+  }
+}
+
+/* Infinite horizontal marquee styling */
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 24px;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Parallax zoom-driven animation for artistic modal hero image */
+.project-modal-hero-image-zoom {
+  animation: zoom-on-scroll linear both;
+  animation-timeline: --modal-scroll;
+  animation-range: 0px 600px;
+}
+
+@keyframes zoom-on-scroll {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.18);
+  }
+}

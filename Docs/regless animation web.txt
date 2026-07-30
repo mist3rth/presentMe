@@ -1,0 +1,24 @@
+Frameworks d'animation — du moins au plus impactant
+Tier 1 — Compositor uniquement (perf maximale)
+Ces solutions ne touchent jamais le layout. Le navigateur les traite sur un thread séparé, sans bloquer le main thread.
+CSS Transitions (0 kb) — La référence absolue pour hover, états, micro-UI. Règle d'or : animer uniquement transform et opacity. Ajouter will-change: transform sur les éléments cibles. Ne jamais animer width, height, margin, top, left — ces propriétés déclenchent un reflow complet.
+CSS Animations / @keyframes (0 kb) — Identique en pipeline. Idéal pour les loaders et boucles. Optimisation clé : utiliser animation-play-state: paused via IntersectionObserver pour stopper les animations hors viewport.
+View Transitions API (0 kb) — Transitions de pages et navigation SPA avec zéro JS d'animation. Envelopper les mutations dans document.startViewTransition(). Disponible Chrome 111+ / Safari 18+. Prévoir un fallback : if (!document.startViewTransition) applyChange().
+Web Animations API — WAAPI (0 kb) — Le pendant JS des CSS Animations, même pipeline compositor. Permet le contrôle programmatique complet (play/pause/reverse/seek). Utiliser composite: "add" pour superposer des animations sans conflit. Ne jamais lire de propriétés layout dans les callbacks.
+
+Tier 2 — JS léger, compositor-friendly
+Motion One (~3 kb gzip) — Wrapper de WAAPI, même pipeline. Apporte une API proche de GSAP avec une fraction du poids. Utiliser inView() pour déclencher uniquement dans le viewport, scroll() pour du scroll-driven sans polling.
+
+Tier 3 — Main thread, impact modéré
+GSAP Core (~30 kb gzip) — Puissant pour les timelines complexes, mais tout passe par le main thread. Optimisations indispensables : gsap.config({ force3D: true }), toujours x/y jamais left/top, appeler .kill() au démontage de chaque composant.
+GSAP + ScrollTrigger (~45 kb gzip) — Ajouter scrub: true pour éviter les callbacks frame-par-frame. Ne jamais lire window.scrollY en parallèle. Désactiver les animations parallax sur mobile via matchMedia.
+Canvas 2D (0 kb) — Zéro reflow puisque le DOM n'est pas touché, mais le calcul de rendu reste sur le main thread. Solution : OffscreenCanvas + Worker pour déporter le rendu sur un thread secondaire. Throttle à 30fps sur mobile.
+
+Tier 4 — Lourd, à optimiser sérieusement
+Three.js / WebGL (~170 kb gzip) — Passe sur le GPU donc aucun reflow, mais le bundle et l'init sont coûteux. Limiter setPixelRatio(Math.min(devicePixelRatio, 2)). Merger les géométries statiques. Disposer les textures non utilisées.
+Lottie Web (~60 kb gzip) — Rejouer des exports After Effects. Préférer lottie-light, lazy-loader les JSON, pauser hors viewport avec IntersectionObserver.
+Framer Motion (~50 kb gzip) — Puissant dans un contexte React mais coûteux. Le prop layout est le plus lourd — le réserver aux cas nécessaires et l'isoler dans des composants mémoïsés. Utiliser useReducedMotion().
+GSAP + tous plugins (~80 kb gzip) — Ne charger que les plugins réellement utilisés. Chaque plugin (MorphSVG, SplitText, DrawSVG) pèse 10–20 kb supplémentaires. Tree-shaking ES modules obligatoire.
+
+La règle des 3 propriétés sûres
+Pour n'importe quel framework, les animations fluides se résument à : transform (translate, scale, rotate), opacity, et depuis peu clip-path (partiellement compositor). Tout le reste déclenche layout ou paint — c'est là que les janks apparaissent.
