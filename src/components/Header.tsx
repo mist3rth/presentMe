@@ -111,10 +111,10 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex md:hidden text-white hover:text-[#F97316] transition-colors p-2 focus:outline-none cursor-pointer shrink-0 z-50"
+            className="flex md:hidden items-center justify-center text-white hover:text-[#F97316] bg-white/10 hover:bg-white/20 p-2.5 rounded-lg transition-all focus:outline-none cursor-pointer shrink-0 z-[150] relative border border-white/10"
             aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? <X className="w-6 h-6 text-[#F97316]" /> : <Menu className="w-6 h-6 text-white" />}
           </button>
         </div>
       </header>
