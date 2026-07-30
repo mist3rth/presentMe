@@ -437,7 +437,7 @@ export default function ProjetsSection() {
   return (
     <section 
       id="projets" 
-      className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-32 md:py-40 overflow-hidden border-t border-white/5 scroll-mt-24"
+      className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 pt-20 md:pt-28 pb-32 md:pb-40 overflow-hidden border-t border-white/5 scroll-mt-32"
     >
       {/* Structural grid lines */}
       <div className="absolute inset-y-0 left-0 w-[1px] bg-white/5 pointer-events-none" />
