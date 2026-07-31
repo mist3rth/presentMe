@@ -107,7 +107,7 @@ export default function ParcoursSection() {
             </div>
 
             {/* Holographic Interactive Visual Panel */}
-            <div className="relative aspect-[3/4] w-full max-w-[380px] mx-auto bg-black/60 border border-white/10 rounded-2xl flex items-center justify-center overflow-hidden shadow-[0_25px_65px_-15px_rgba(0,0,0,0.9)]">
+            <div className="hidden md:flex relative aspect-[3/4] w-full max-w-[380px] mx-auto bg-black/60 border border-white/10 rounded-2xl items-center justify-center overflow-hidden shadow-[0_25px_65px_-15px_rgba(0,0,0,0.9)]">
               
               {/* Background Image with crossfade transition */}
               <AnimatePresence mode="wait">
@@ -129,7 +129,7 @@ export default function ParcoursSection() {
             </div>
 
             {/* Bottom active indicators below the card */}
-            <div className="flex justify-center gap-1.5 w-full mt-4 select-none">
+            <div className="hidden md:flex justify-center gap-1.5 w-full mt-4 select-none">
               {items.map((item) => (
                 <div 
                   key={item.id}
@@ -148,7 +148,7 @@ export default function ParcoursSection() {
         </div>
 
         {/* RIGHT COLUMN: TIMELINE TEXT BLOCKS */}
-        <div className="md:col-span-7 flex flex-col pl-0 md:pl-8 pb-[40vh]">
+        <div className="md:col-span-7 flex flex-col pl-0 md:pl-8 pb-0 md:pb-[40vh]">
           
           {items.map((item, index) => {
             const isActive = activeIndex === index;

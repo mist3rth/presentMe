@@ -442,7 +442,7 @@ export default function ProjetsSection() {
         </div>
 
         {/* Title (Always visible, colored on hover) */}
-        <h3 className="text-xl sm:text-2xl font-black uppercase text-white tracking-tight leading-tight group-hover:text-[#F97316] transition-colors duration-300 mt-2">
+        <h3 className="text-lg max-[380px]:text-base sm:text-2xl font-black uppercase max-sm:text-[#F97316] text-white tracking-tight leading-tight group-hover:text-[#F97316] transition-colors duration-300 mt-2">
           {project.title}
         </h3>
 

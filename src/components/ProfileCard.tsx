@@ -597,7 +597,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
             >
               <div className="w-full absolute flex flex-col" style={{ top: '3.5em', display: 'flex', gridArea: 'auto' }}>
                 <h3
-                  className="font-black m-0 tracking-tighter uppercase"
+                  className="font-black m-0 tracking-tighter uppercase max-[430px]:!text-[1.7em] max-[370px]:!text-[1.5em]"
                   style={{
                     fontSize: 'min(5svh, 2.5em)',
                     backgroundImage: 'linear-gradient(135deg, #ffffff 15%, #ffedd5 40%, #f97316 50%, #ffedd5 60%, #ffffff 85%)',
