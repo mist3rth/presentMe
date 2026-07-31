@@ -11,7 +11,14 @@ export const ButtonMagnetic: React.FC<ButtonMagneticProps> = ({ href, targetId, 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (targetId) {
       e.preventDefault();
-      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+      const element = document.getElementById(targetId);
+      if (element) {
+        if ((window as any).lenis) {
+          (window as any).lenis.scrollTo(element);
+        } else {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }
   };
 
