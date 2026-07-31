@@ -9,7 +9,7 @@ import GradualBlur from './components/GradualBlur';
 import { BackToTop } from './components/ui/BackToTop';
 import { faqData, presets } from './data/portfolioData';
 import { ScrollStepIndicator } from './components/ui/ScrollStepIndicator';
-import { ProjectDetailPage } from './components/ProjectDetailPage';
+const ProjectDetailPage = lazy(() => import('./components/ProjectDetailPage').then(m => ({ default: m.ProjectDetailPage })));
 
 
 // --- Composants principaux de la page d'accueil (chargés directement pour éviter les sauts de scroll) ---
@@ -194,9 +194,10 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-[#050302] text-white flex flex-col font-sans selection:bg-[#F97316] selection:text-white max-w-full overflow-x-clip">
       <Header />
-      <Routes>
-        <Route path="/projet/:id" element={<ProjectDetailPage />} />
-        <Route path="*" element={
+      <Suspense fallback={<div className="min-h-screen bg-[#050302]" />}>
+        <Routes>
+          <Route path="/projet/:id" element={<ProjectDetailPage />} />
+          <Route path="*" element={
           /* Main Content Wrapper for Sticky Footer Reveal */
           <div className="relative z-20 bg-[#050302] shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col w-full pb-16 max-w-full overflow-x-clip">
         {/* GRID OVERLAY */}
@@ -1250,7 +1251,8 @@ export default function App() {
       )}
           </div>
         } />
-      </Routes>
+        </Routes>
+      </Suspense>
       <BackToTop />
     </div>
   );
