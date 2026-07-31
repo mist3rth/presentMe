@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Atom, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { scrollToTarget } from '../utils/scrollTo';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,18 +43,10 @@ export default function Header() {
     e.preventDefault();
     if (location.pathname !== '/') {
       navigate(`/#${targetId}`);
-      setTimeout(() => {
-        const element = document.getElementById(targetId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+      setTimeout(() => scrollToTarget(targetId), 100);
     } else {
       window.history.pushState(null, '', `#${targetId}`);
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      scrollToTarget(targetId);
     }
   };
 

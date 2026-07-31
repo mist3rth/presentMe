@@ -84,6 +84,7 @@ export interface Project {
   conclusionA?: string;
   conclusionB?: string;
   conclusionVideo?: string;
+  badgeText?: string;
 }
 
 export const projects: Project[] = [

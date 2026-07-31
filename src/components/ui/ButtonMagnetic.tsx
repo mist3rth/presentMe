@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface ButtonMagneticProps {
   href: string;
@@ -8,15 +9,33 @@ interface ButtonMagneticProps {
 }
 
 export const ButtonMagnetic: React.FC<ButtonMagneticProps> = ({ href, targetId, children, className = '' }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (targetId) {
       e.preventDefault();
-      const element = document.getElementById(targetId);
-      if (element) {
-        if ((window as any).lenis) {
-          (window as any).lenis.scrollTo(element);
-        } else {
-          element.scrollIntoView({ behavior: 'smooth' });
+      if (location.pathname !== '/') {
+        navigate(`/#${targetId}`);
+        setTimeout(() => {
+          const element = document.getElementById(targetId);
+          if (element) {
+            if ((window as any).lenis) {
+              (window as any).lenis.scrollTo(element);
+            } else {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }, 100);
+      } else {
+        window.history.pushState(null, '', `#${targetId}`);
+        const element = document.getElementById(targetId);
+        if (element) {
+          if ((window as any).lenis) {
+            (window as any).lenis.scrollTo(element);
+          } else {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       }
     }

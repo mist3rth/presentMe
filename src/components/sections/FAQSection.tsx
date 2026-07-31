@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
+import { scrollToTarget } from '../../utils/scrollTo';
 
 export interface FAQItem {
   question: string;
@@ -30,7 +31,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ faqData }) => {
               href="#contact" 
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                scrollToTarget('contact');
               }}
               className="text-[#F97316] hover:underline font-medium"
             >

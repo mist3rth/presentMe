@@ -97,10 +97,12 @@ export const Grid: React.FC<{
   pattern?: [number, number][];
   size?: number;
   brightSquares?: [number, number][];
+  className?: string;
 }> = ({
   pattern,
   size,
   brightSquares,
+  className,
 }) => {
   // Define layers of squares at different opacities for depth
   const pLow = pattern ?? [
@@ -116,7 +118,7 @@ export const Grid: React.FC<{
   ];
   
   return (
-    <div className="pointer-events-none absolute left-1/2 top-0 -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)] z-0">
+    <div className={`pointer-events-none absolute left-1/2 top-0 -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)] z-0 ${className || ''}`}>
       <div className="absolute inset-0 bg-gradient-to-r [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] dark:from-[#F97316]/15 from-orange-100/10 to-transparent opacity-100">
         <GridPattern
           width={size ?? 20}

@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
+import { scrollToTarget } from './utils/scrollTo';
 import Header from './components/Header';
 import ProfileCard from './components/ProfileCard';
 import GradualBlur from './components/GradualBlur';
@@ -185,6 +186,8 @@ export default function App() {
   });
   const yParallaxFooter = useTransform(footerScrollY, [0, 1], ["-15%", "15%"]);
 
+
+
   const activePreset = presets[gradientPreset];
 
   // --- IntersectionObserver sentinels pour le lazy-rendering des sections ---
@@ -192,7 +195,7 @@ export default function App() {
 
 
   return (
-    <div className="relative min-h-screen bg-[#050302] text-white flex flex-col font-sans selection:bg-[#F97316] selection:text-white max-w-full overflow-x-clip">
+    <div className="relative min-h-screen bg-[#050302] text-white flex flex-col font-sans selection:bg-[#F97316] selection:text-white max-w-full overflow-x-clip [overflow-anchor:none]">
       <Header />
       <Suspense fallback={<div className="min-h-screen bg-[#050302]" />}>
         <Routes>
@@ -315,7 +318,7 @@ export default function App() {
               onClick={(e) => {
                 e.preventDefault();
                 window.history.pushState(null, '', '#methodologie');
-                document.getElementById('methodologie')?.scrollIntoView({ behavior: 'smooth' });
+                scrollToTarget('methodologie');
               }}
               className="group relative w-full sm:w-64 h-16 rounded-none overflow-visible transition-all duration-500 cursor-pointer active:scale-95 flex items-center justify-center font-mono text-sm uppercase tracking-widest text-center"
             >
@@ -337,7 +340,7 @@ export default function App() {
               onClick={(e) => {
                 e.preventDefault();
                 window.history.pushState(null, '', '#projets');
-                document.getElementById('projets')?.scrollIntoView({ behavior: 'smooth' });
+                scrollToTarget('projets');
               }}
               className="group text-sm font-semibold text-white/80 hover:text-white transition-colors duration-300 relative py-2 cursor-pointer"
             >
@@ -670,7 +673,7 @@ export default function App() {
                 enableTilt={true}
                 enableMobileTilt
                 onContactClick={() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  scrollToTarget('contact');
                 }}
                 behindGlowColor={`${activePreset.start}66`}
                 behindGlowEnabled
@@ -685,8 +688,8 @@ export default function App() {
       <section 
         className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 pt-24 md:pt-32 pb-0 border-t border-white/5 scroll-mt-8"
       >
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 border-b border-white/5 mb-16">
+        {/* Section Header (Invisible, just for spacing) */}
+        <div className="invisible flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 border-b border-white/5 mb-16 -mx-4 px-4 md:-mx-8 md:px-8">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <span className="inline-flex items-end select-none tracking-tight">
@@ -696,30 +699,47 @@ export default function App() {
               </span>
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#F97316]">9 leviers de valeur</span>
             </div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter text-white"
-            >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
               3 PILIERS, 9 LEVIERS.
-            </motion.h2>
+            </h2>
           </div>
           <p className="max-w-md text-sm text-slate-400 leading-relaxed font-light">
             Une vision 360 de la création digitale, où chaque compétence nourrit la coherence globale du projet.
           </p>
         </div>
 
-        <div className="flex flex-col gap-12 mt-12 mb-12 relative pb-8">
+        <div className="flex flex-col gap-12 mt-12 mb-12 relative pb-0">
           {/* Row 1 */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="sticky top-[240px] z-10 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-none items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[320px] z-10 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-none items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
+            {/* Absolute Visible Title anchored to Card 1 */}
+            <div 
+              className="absolute left-[-32px] right-[-32px] md:left-[-48px] md:right-[-48px] flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 border-b border-white/5 -mx-4 px-4 md:-mx-8 md:px-8"
+              style={{ bottom: 'calc(100% + 112px)' }}
+            >
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-end select-none tracking-tight">
+                    <span className="text-xl font-black text-[#F97316] leading-none">/</span>
+                    <span className="text-base font-black text-[#F97316]/80 leading-none">/</span>
+                    <span className="text-xs font-black text-[#F97316]/50 leading-none">/</span>
+                  </span>
+                  <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#F97316]">9 leviers de valeur</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
+                  3 PILIERS, 9 LEVIERS.
+                </h2>
+              </div>
+              <p className="max-w-md text-sm text-slate-400 leading-relaxed font-light">
+                Une vision 360 de la création digitale, où chaque compétence nourrit la coherence globale du projet.
+              </p>
+            </div>
+
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
               <div className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">
@@ -767,7 +787,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="sticky top-[240px] z-20 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-none items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[320px] z-20 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-none items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
@@ -816,7 +836,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="sticky top-[240px] z-30 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-none items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="relative z-30 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-none items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
@@ -883,15 +903,27 @@ export default function App() {
         {/* Centered Content */}
         <div className="relative z-10 flex flex-col items-center text-center gap-6 max-w-2xl pointer-events-none">
           {/* Massive Heading */}
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-[0.95] pointer-events-auto select-none">
+          <motion.h2 
+            initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: "-20%" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-[0.95] pointer-events-auto select-none"
+          >
             DIFFÉRENTES ÉQUIPES.<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F97316] to-amber-400">MÊME CLARTÉ.</span>
-          </h2>
+          </motion.h2>
 
           {/* Description Text */}
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-light max-w-xl pointer-events-auto">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-20%" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-base sm:text-lg text-slate-300 leading-relaxed font-light max-w-xl pointer-events-auto"
+          >
             La méthode s'adapte à toute organisation, que vous définissiez un plan de lancement produit, aligniez vos équipes opérationnelles ou pilotiez la stratégie globale de vos projets.
-          </p>
+          </motion.p>
         </div>
       </section>
 
@@ -947,7 +979,7 @@ export default function App() {
                 href="#projets"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('projets')?.scrollIntoView({ behavior: 'smooth' });
+                  scrollToTarget('projets');
                 }}
                 className="inline-flex items-center justify-center gap-2 bg-[#F97316] hover:bg-orange-600 text-white font-mono text-xs uppercase tracking-widest px-6 py-4 transition-all duration-300 hover:-translate-y-0.5"
               >
@@ -1048,7 +1080,7 @@ export default function App() {
                 href="#contact" 
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  scrollToTarget('contact');
                 }}
                 className="text-[#F97316] hover:underline font-medium"
               >

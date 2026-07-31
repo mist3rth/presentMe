@@ -230,14 +230,28 @@ export default function DotImageReveal({
     host.addEventListener('touchend', onLeave);
 
     let raf = 0;
+    let isVisible = false;
+
+    const io = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible) {
+        if (!raf) raf = requestAnimationFrame(loop);
+      } else {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    }, { rootMargin: '100px' });
+    io.observe(host);
+
     const loop = (now: number) => {
+      if (!isVisible) return;
       drawFrame(now);
       raf = requestAnimationFrame(loop);
     };
-    raf = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       ro?.disconnect();
       host.removeEventListener('mousemove', onMove);
       host.removeEventListener('mouseleave', onLeave);
