@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { 
   ArrowLeft, 
   ArrowRight, 
@@ -16,6 +16,7 @@ import { liveProjects } from '../data/portfolioData';
 import CircularText from './ui/CircularText';
 import { AutoplayHoverPauseVideo } from './ui/AutoplayHoverPauseVideo';
 import { Grid } from './ui/GridPattern';
+import GradualBlur from './GradualBlur';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -25,6 +26,9 @@ interface ProjectModalProps {
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, onNext }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
+  
+  const { scrollY } = useScroll({ container: containerRef });
+  const scale = useTransform(scrollY, [0, 600], [1, 1.18]);
 
   React.useEffect(() => {
     if (containerRef.current) {
@@ -48,11 +52,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
         <div className="flex-1 w-full pb-24 md:pb-28 flex flex-col">
           {/* Hero visual inside page - Full Width Viewport with scroll zoom */}
           <div className="relative h-[55vh] w-full border-b border-white/10 overflow-hidden mb-12 rounded-none">
-            <img 
+            <motion.img 
+              style={{ scale }}
               src={project.imageUrl} 
               alt={project.title}
               referrerPolicy="no-referrer"
-              className="absolute inset-0 w-full h-[130%] object-cover project-modal-hero-image-zoom"
+              className="absolute inset-0 w-full h-[130%] object-cover"
             />
           </div>
 
@@ -306,11 +311,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
         <div className="flex-1 w-full pb-24 md:pb-28 flex flex-col">
           {/* Hero visual inside page - Full Width Viewport with scroll zoom */}
           <div className="relative h-[55vh] w-full border-b border-white/10 overflow-hidden mb-12 rounded-none">
-            <img 
+            <motion.img 
+              style={{ scale }}
               src={project.imageUrl} 
               alt={project.title}
               referrerPolicy="no-referrer"
-              className="absolute inset-0 w-full h-[130%] object-cover project-modal-hero-image-zoom"
+              className="absolute inset-0 w-full h-[130%] object-cover"
             />
           </div>
 
@@ -552,7 +558,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                       {project.conclusionVideo ? (
                         <AutoplayHoverPauseVideo 
                           src={project.conclusionVideo} 
-                          className="absolute inset-0 w-full h-full object-cover cursor-pointer"
+                          className="absolute inset-0 w-full h-full object-cover"
                         />
                       ) : (
                         <img 
@@ -590,7 +596,18 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
           </div>
 
         </div>
-      )}
+      </div>
+      <GradualBlur
+        target="page"
+        position="bottom"
+        height="7rem"
+        strength={3}
+        divCount={6}
+        curve="bezier"
+        exponential
+        opacity={0.95}
+        zIndex={50}
+      />
     </motion.div>
   );
 };

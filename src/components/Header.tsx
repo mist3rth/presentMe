@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Atom, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScrollEvent = () => {
@@ -37,10 +40,20 @@ export default function Header() {
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    window.location.hash = targetId;
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate(`/#${targetId}`);
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.history.pushState(null, '', `#${targetId}`);
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -57,8 +70,12 @@ export default function Header() {
             className="flex items-center gap-3 group cursor-pointer shrink-0"
             onClick={() => {
               setIsMenuOpen(false);
-              window.location.hash = '';
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              if (location.pathname !== '/') {
+                navigate('/');
+              } else {
+                window.history.pushState(null, '', window.location.pathname);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
             }}
           >
             <div className="relative w-10 h-10 bg-gradient-to-br from-[#F97316] to-[#c83c3c] rounded-lg flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-105">

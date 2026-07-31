@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, 
@@ -17,9 +18,17 @@ import {
   Compass
 } from 'lucide-react';
 import bigleafImg from '../assets/bigleaf.webp';
+import bigleaf1Img from '../assets/leaf1.webp';
+import bigleaf2Img from '../assets/leaf2.webp';
 import elgustoImg from '../assets/elgusto.webp';
+import elgusto1Img from '../assets/gusto1.webp';
+import elgusto2Img from '../assets/gusto2.webp';
 import vaAthleticImg from '../assets/vaathletic.webp';
+import va1Img from '../assets/va1.webp';
+import va2Img from '../assets/va2.webp';
 import primeImmobilierImg from '../assets/primeimmobilier.webp';
+import prime1Img from '../assets/prime1.webp';
+import prime2Img from '../assets/prime2.webp';
 import japonImg from '../assets/japon.webp';
 import japon1Img from '../assets/japon1.webp';
 import japon2Img from '../assets/japon2.webp';
@@ -111,7 +120,7 @@ export const projects: Project[] = [
         },
         {
           step: "03",
-          title: "Refactoring Industriel (AI Studio)",
+          title: "Refactoring Industriel (Antigravity)",
           desc: "Découpage du code en composants atomiques hautement réutilisables, typage de bout en bout et isolation de l'état."
         },
         {
@@ -130,7 +139,9 @@ export const projects: Project[] = [
         "Qualité 'Production-Ready' : Contrairement au 'vibe coding' chaotique, l'IA a été guidée par une architecture logicielle rigoureuse, résultant en une base de code propre, maintenable et scalable.",
         "Innovation Intégrée : Le gain de temps sur l'intégration classique a permis de se concentrer sur des features à haute valeur ajoutée comme le questionnaire intelligent (GenAI).",
         "Zéro Compromis : Les standards industriels (Performance, SEO, A11Y) ont été respectés dès le jour 1, sans repousser la dette technique."
-      ]
+      ],
+      overviewA: bigleaf1Img,
+      overviewB: bigleaf2Img
     },
     {
       id: 'elgusto',
@@ -184,7 +195,9 @@ export const projects: Project[] = [
         "Qualité 'Production-Ready' : Contrairement au 'vibe coding' chaotique, le développement a été guidé par une architecture logicielle rigoureuse (isolation des hooks métiers, composants UI lazy-loadés), résultant en une base de code propre, maintenable et scalable.",
         "Expérience Utilisateur Immersive : L'intégration soignée des animations et le 'Smart Pairing' dans le panier apportent une dimension interactive à très haute valeur ajoutée, reflétant le prestige d'un restaurant d'exception.",
         "Zéro Compromis : Les standards industriels (Performance, SEO via Helmet, A11Y) ont été respectés dès le jour 1, sans repousser la dette technique."
-      ]
+      ],
+      overviewA: elgusto1Img,
+      overviewB: elgusto2Img
     },
     {
       id: 'vaathletic',
@@ -237,7 +250,9 @@ export const projects: Project[] = [
         "Architecture de la Confiance : L'absence de distractions et l'approche psychologique du design (espaces négatifs, typographie élégante, preuves d'autorité) instaurent un climat de sécurité immédiat pour un service haut de gamme.",
         "Qualité 'Production-Ready' : La rapidité d'exécution n'a pas excusé le 'vibe coding'. L'approche architecturale rigoureuse garantit des performances exceptionnelles et une base de code propre.",
         "Zéro Compromis : Les standards industriels de la méthode BMAD (Performance maximale, accessibilité WCAG AA, SEO structuré) ont été validés intégralement, livrant un produit sans dette technique."
-      ]
+      ],
+      overviewA: va1Img,
+      overviewB: va2Img
     },
     {
       id: 'primeimmobilier',
@@ -290,7 +305,9 @@ export const projects: Project[] = [
         "Perception Premium & Flux Cognitif : La rigueur géométrique (grille de 8px) couplée à des animations léchées et sans accrocs engagent l'utilisateur dans une navigation fluide, renvoyant immédiatement un sentiment de luxe et de perfection.",
         "Architecture Robuste : Contrairement au code brut généré par défaut, l'application repose sur des fondations solides (TypeScript strict, Zod) qui la rendent maintenable et scalable à long terme.",
         "Zéro Compromis : Les standards industriels de la méthode BMAD ont été scrupuleusement respectés, assurant une indexation optimale (SEO/AEO) et une accessibilité parfaite dès le jour 1."
-      ]
+      ],
+      overviewA: prime1Img,
+      overviewB: prime2Img
     },
     // Creative / Artistic Projects
     {
@@ -309,7 +326,8 @@ export const projects: Project[] = [
       description: "Une campagne de marque conçue entièrement avec l'IA, de la stratégie créative aux prompts vidéo.",
       brief: "En partant de la nouvelle campagne Air France \"S'envoler en toute élégance\", l'exercice consistait à prouver que l'IA peut générer un travail de création émotionnel, cohérent et publicitairement efficace sans tomber dans le générique.\n\nLe brief s'est construit en direct : choix de Japan Airlines comme marque cible, palette sakura + gris cendre + noir encre, direction poétique et onirique. Le vrai défi était d'éviter l'exotisme décoratif et de trouver une émotion universellement lisible pour un public européen : le calme, la sérénité, l'envie d'y être.\n\nDeux visuels générés sur Whisk ont validé le concept : une femme en kimono entourée d'une grue formée de pétales de cerisier, et une femme en robe blanche en lévitation parmi des plumes. Pour chacun, un prompt vidéo cinématographique a été rédigé du noir absolu jusqu'au plan final sur le logo JAL.\n\nCONCEPT : \"The journey begins when you exhale\"\nPALETTE : Rose sakura · Gris cendre · Noir encre\nFORMAT : 6 visuels print + 2 prompts vidéo\nCIBLE : Marché européen, adultes 30–55 ans",
       stack: ["Claude Sonnet 4.6", "Google Whisk", "Flow", "CapCut"],
-      conclusion: "Ce projet démontre qu'une IA peut tenir un rôle de directeur créatif stratégique pas seulement générer des images. La valeur réelle est dans la construction du brief : identifier l'insight émotionnel juste, éviter les clichés culturels, calibrer chaque prompt pour qu'il serve une intention. L'image finale n'est que la surface visible d'un travail de pensée créative et éditoriale mené entièrement en langage naturel."
+      conclusion: "Ce projet démontre qu'une IA peut tenir un rôle de directeur créatif stratégique pas seulement générer des images. La valeur réelle est dans la construction du brief : identifier l'insight émotionnel juste, éviter les clichés culturels, calibrer chaque prompt pour qu'il serve une intention. L'image finale n'est que la surface visible d'un travail de pensée créative et éditoriale mené entièrement en langage naturel.",
+      badgeText: "EMOTION * AI VIDEO * CREATIVE DIRECTION * "
     },
     {
       id: 'nocta',
@@ -327,7 +345,8 @@ export const projects: Project[] = [
       description: "Une marque de haute horlogerie créée entièrement avec l'IA, de la stratégie à la campagne finale.",
       brief: "L'exercice consistait à prouver qu'un profil technique sans formation créative, sans background en direction artistique pouvait construire une marque de luxe complète et cohérente en pilotant l'IA.\n\nLe vrai défi n'était pas technique. C'était créatif : éviter les codes attendus de l'horlogerie de luxe (noir profond, or, héritage suisse, clair-obscur façon Caravaggio) pour trouver un territoire visuel inédit et crédible sur le segment 30 000 – 100 000 €.\n\nLe brief s'est construit en direct et par itération : rejet des premiers concepts trop conventionnels, pivot radical vers chrome froid et bleu électrique, ancrage dans la rue urbaine dégradée plutôt qu'en studio. Chaque insatisfaction est devenue une direction. Chaque correction a affiné l'identité.\n\nQuatre visuels générés sur Whisk ont validé le concept : une montre au sol sous la pluie face à des graffitis colorés, un poignet dans un tunnel urbain, un visage aux yeux bleus électriques avec la montre au poignet, un cadran en macro sous la pluie. Pour chacun, un prompt vidéo cinématographique a été rédigé du clip statique jusqu'au brand film final monté dans CapCut.\n\nCONCEPT : \"La montre qui appartient à la rue autant qu'à un poignet à 80 000€\"\nPALETTE : Chrome · Bleu électrique · Béton gris · Noir urban\nFORMAT : 4 visuels print · 1 brand film 5 secondes · Plateforme de marque\nCIBLE : Génération fondatrice, mixte, 40 ans, CSP++, 30 000 – 100 000 €",
       stack: ["Gemini 1.5 Pro", "Google Whisk", "CapCut", "Photopea"],
-      conclusion: "Ce projet démontre qu'un profil tech peut tenir un rôle de directeur créatif stratégique pas seulement exécuter des prompts. La valeur réelle est dans la construction itérative du brief : identifier le territoire visuel juste, rejeter les clichés du secteur, calibrer chaque prompt pour qu'il serve une intention de marque précise.\n\nLa campagne finale n'est que la surface visible d'un travail de positionnement, de direction artistique et d'écriture créative mené entièrement en langage naturel.\n\nCe n'est pas l'IA qui a créé NOCTA. C'est l'IA orchestrée par une intention."
+      conclusion: "Ce projet démontre qu'un profil tech peut tenir un rôle de directeur créatif stratégique pas seulement exécuter des prompts. La valeur réelle est dans la construction itérative du brief : identifier le territoire visuel juste, rejeter les clichés du secteur, calibrer chaque prompt pour qu'il serve une intention de marque précise.\n\nLa campagne finale n'est que la surface visible d'un travail de positionnement, de direction artistique et d'écriture créative mené entièrement en langage naturel.\n\nCe n'est pas l'IA qui a créé NOCTA. C'est l'IA orchestrée par une intention.",
+      badgeText: "WEAR THE FUTURE * BREAK THE PRESENT * NOCTA * "
     },
     {
       id: 'nike',
@@ -345,7 +364,8 @@ export const projects: Project[] = [
       description: "Une campagne publicitaire humoristique créée entièrement avec l'IA, du concept au film final.",
       brief: "L'exercice consistait à imaginer une campagne Nike Air Max 90 radicalement différente de tout ce que la marque a produit et à prouver qu'un profil technique sans formation créative pouvait construire un concept publicitaire cohérent, drôle et efficace en pilotant l'IA.\n\nLe vrai défi n'était pas de générer de beaux visuels. C'était de trouver un angle créatif inédit sur une marque et un produit ultra-codifiés sans tomber dans le pastiche ni dans le générique.\n\nLe brief s'est construit par intuition et itération : rejet du territoire urbain sombre trop attendu, pivot vers l'humour absurde et le premier degré, ancrage dans le jardin de banlieue banal plutôt qu'en studio premium. Le concept central (un homme ordinaire qui utilise sa Air Max 90 comme téléphone, comme pot de fleur avec un sérieux imperturbable) est né d'une conviction simple : les icônes ont besoin qu'on se moque d'elles avec amour.\n\nLa série d'affiches a validé le concept : chaussure en lévitation sur fond sombre avec twists visuels absurdes (bocal de poisson rouge, bouquet de fleurs, personnage fashion week excentrique avec la paire sur la tête). Pour chaque visuel, le même fil rouge : \"...ALMOST.\" en rouge, écho parfait au swoosh et à la semelle.\n\nLe film publicitaire enchaîne les affiches en clips rythmés avec création sonore et se termine sur un logo Nike, \"Just Do It.\", suivi de \"Make fun.\"\n\nCONCEPT : \"La chaussure la plus iconique du monde. Utile à tout. Ou presque.\"\nPALETTE : Blanc · Gris charbon · Rouge Nike · Noir mat\nFORMAT : Série d'affiches print · 1 film publicitaire · 1 scène humoristique photo-réaliste · Assets logo\nCIBLE : Communauté sneakers, culture urbaine, 25 - 45 ans, marché international",
       stack: ["Gemini 3.1", "Google Whisk", "CapCut", "Photopea"],
-      conclusion: "Ce projet démontre qu'un profil tech peut construire un concept publicitaire complet, pas seulement assembler des images générées. La valeur réelle est dans l'intention créative derrière chaque choix : le territoire de l'humour absurde, le personnage deadpan, le \"...ALMOST.\" comme fil rouge, la chute finale \"Make fun.\" qui répond au \"Just Do It.\"\n\nL'humour est le registre créatif le plus difficile à maîtriser en publicité. Pas parce que c'est techniquement complexe mais parce qu'il repose entièrement sur la justesse du ton, du timing et de l'intention.\n\nCe n'est pas l'IA qui a trouvé le concept. C'est l'IA orchestrée par le bon angle.\n\nProjet fictif non affilié à Nike"
+      conclusion: "Ce projet démontre qu'un profil tech peut construire un concept publicitaire complet, pas seulement assembler des images générées. La valeur réelle est dans l'intention créative derrière chaque choix : le territoire de l'humour absurde, le personnage deadpan, le \"...ALMOST.\" comme fil rouge, la chute finale \"Make fun.\" qui répond au \"Just Do It.\"\n\nL'humour est le registre créatif le plus difficile à maîtriser en publicité. Pas parce que c'est techniquement complexe mais parce qu'il repose entièrement sur la justesse du ton, du timing et de l'intention.\n\nCe n'est pas l'IA qui a trouvé le concept. C'est l'IA orchestrée par le bon angle.\n\nProjet fictif non affilié à Nike",
+      badgeText: "SNEAKER CULTURE * CREATIVE DIRECTION * NIKE * "
     },
     {
       id: 'assos',
@@ -363,11 +383,13 @@ export const projects: Project[] = [
       description: "Trois campagnes fictives pour des associations nationales, construites entièrement avec l'IA.",
       brief: "L'exercice consistait à prouver qu'un registre créatif habituellement réservé aux grandes agences, les campagnes d'intérêt public, pouvait être construit avec rigueur et impact par un profil technique pilotant l'IA.\n\nLe vrai défi n'était pas de générer de belles images. C'était d'éviter les codes attendus des campagnes associatives (pathos convenu, typographie système, visuels génériques de souffrance) pour trouver un territoire visuel et éditorial qui arrête vraiment le regard.\n\nTrois causes, trois univers distincts, une seule règle : jamais d'explication. L'image révèle. Le texte achève. Chaque affiche repose sur un objet familier détourné (le berceau, le bouquet, la bague, le rouge à lèvres) retourné contre lui-même pour créer un choc émotionnel immédiat. Chaque punchline a été construite par itération : rejet des premières formulations trop attendues, recherche du mot juste, de la rupture de ton au bon endroit.\n\nNeuf affiches finales. Une cohérence de campagne assumée (même typographie, même code couleur rouge sang, même silence entre l'image et le mot).\n\nCONCEPT : \"L'objet de l'amour retourné contre lui-même.\"\nPALETTE : Noir profond · Blanc pur · Rouge sang (#C0001A) · Gris anthracite\nFORMAT : 9 visuels print · 3 territoires éditoriaux · 3 associations nationales · Système typographique cohérent\nCAUSES & ASSOS : Sida (AIDES : \"On transmet l'amour, pas le Sida.\") · Enfants malades (AFM-Téléthon : \"Son combat, il ne l'a pas choisi. Le vôtre commence maintenant.\") · Violences conjugales (Solidarité Femmes 3919 : \"Il lui offrait des bijoux. Avec les mêmes mains.\")",
       stack: ["Claude Sonnet 4.6", "Google Flow", "Photopea"],
-      conclusion: "Ce projet démontre qu'un registre créatif exigeant, le message social à fort impact, n'est pas l'apanage des agences. Il est accessible à quiconque sait construire une intention avant de générer une image.\n\nLa valeur réelle n'est pas dans les visuels. Elle est dans les choix : quel objet, quel mot, quelle rupture, quel silence. Identifier le territoire émotionnel juste, rejeter les clichés du secteur associatif, calibrer chaque punchline pour qu'elle serve une cause précise sans la trahir.\n\nNeuf affiches. Zéro agence. Zéro studio. Cent pour cent direction éditoriale et artistique en langage naturel.\n\nCe ne sont pas les images qui portent ces campagnes. C'est l'intention derrière chaque mot."
+      conclusion: "Ce projet démontre qu'un registre créatif exigeant, le message social à fort impact, n'est pas l'apanage des agences. Il est accessible à quiconque sait construire une intention avant de générer une image.\n\nLa valeur réelle n'est pas dans les visuels. Elle est dans les choix : quel objet, quel mot, quelle rupture, quel silence. Identifier le territoire émotionnel juste, rejeter les clichés du secteur associatif, calibrer chaque punchline pour qu'elle serve une cause précise sans la trahir.\n\nNeuf affiches. Zéro agence. Zéro studio. Cent pour cent direction éditoriale et artistique en langage naturel.\n\nCe ne sont pas les images qui portent ces campagnes. C'est l'intention derrière chaque mot.",
+      badgeText: "CHOC ÉMOTIONNEL * PUBLIC INTEREST * CAMPAIGN * "
     }
   ];
 
 export default function ProjetsSection() {
+  const navigate = useNavigate();
   const digitalProjects = projects.filter(p => p.type === 'digital');
   const artisticProjects = projects.filter(p => p.type === 'artistic');
 
@@ -376,7 +398,11 @@ export default function ProjetsSection() {
       key={project.id}
       layoutId={`card-${project.id}`}
       onClick={() => {
-        window.location.hash = `projet-${project.id}`;
+        if ((window as any).lenis) {
+          (window as any).lenis.scrollTo(0, { immediate: true });
+        }
+        window.scrollTo(0, 0);
+        navigate(`/projet/${project.id}`);
       }}
       className="group relative aspect-[16/10] md:aspect-[4/3] bg-zinc-950 overflow-hidden cursor-pointer flex flex-col justify-end p-6 sm:p-8 rounded-none transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-black/50"
     >
@@ -436,8 +462,7 @@ export default function ProjetsSection() {
 
   return (
     <section 
-      id="projets" 
-      className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 pt-20 md:pt-28 pb-32 md:pb-40 overflow-hidden border-t border-white/5 scroll-mt-32"
+      className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 pt-20 md:pt-28 pb-32 md:pb-40 overflow-hidden border-t border-white/5"
     >
       {/* Structural grid lines */}
       <div className="absolute inset-y-0 left-0 w-[1px] bg-white/5 pointer-events-none" />

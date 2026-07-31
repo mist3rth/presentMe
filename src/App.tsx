@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import Header from './components/Header';
 import ProfileCard from './components/ProfileCard';
@@ -8,15 +9,17 @@ import GradualBlur from './components/GradualBlur';
 import { BackToTop } from './components/ui/BackToTop';
 import { faqData, presets } from './data/portfolioData';
 import { ScrollStepIndicator } from './components/ui/ScrollStepIndicator';
-import { useInView } from './hooks/useInView';
+import { ProjectDetailPage } from './components/ProjectDetailPage';
 
 
-// --- Lazy-loaded components (chargés à la demande, pas au démarrage) ---
-const ScrollVelocity  = lazy(() => import('./components/ScrollVelocity'));
-const MethodeSection  = lazy(() => import('./components/MethodeSection'));
-const ProjetsSection  = lazy(() => import('./components/ProjetsSection'));
-const ParcoursSection = lazy(() => import('./components/ParcoursSection'));
-const ProjectModal    = lazy(() => import('./components/ProjectModal').then(m => ({ default: m.ProjectModal })));
+// --- Composants principaux de la page d'accueil (chargés directement pour éviter les sauts de scroll) ---
+import ScrollVelocity from './components/ScrollVelocity';
+import MethodeSection from './components/MethodeSection';
+import ProjetsSection, { projects } from './components/ProjetsSection';
+import ParcoursSection from './components/ParcoursSection';
+
+// --- Lazy-loaded components ---
+const ProjectModal = lazy(() => import('./components/ProjectModal').then(m => ({ default: m.ProjectModal })));
 
 
 import earthOrangeBg from './assets/earth_orange_bg.webp';
@@ -53,6 +56,7 @@ export type Project = {
   conclusionA?: string;
   conclusionB?: string;
   conclusionVideo?: string;
+  badgeText?: string;
 };
 
 export default function App() {
@@ -60,8 +64,15 @@ export default function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  const location = useLocation();
+
   // Initialisation de Lenis (Smooth Scroll premium pour Desktop, natif sur mobile)
   useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -71,6 +82,9 @@ export default function App() {
       wheelMultiplier: 1,
       touchMultiplier: 2,
     });
+
+    // On expose l'instance de lenis à window pour y avoir accès partout (notamment au changement de route)
+    (window as any).lenis = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -82,16 +96,24 @@ export default function App() {
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      delete (window as any).lenis;
     };
   }, []);
+
+  // Remonter en haut de la page instantanément à chaque changement de route
+  useEffect(() => {
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleHashChange = async () => {
       const hash = window.location.hash;
       if (hash.startsWith('#projet-')) {
         const projectId = hash.replace('#projet-', '');
-        // Charge ProjetsSection dynamiquement uniquement quand un hash est détecté
-        const { projects } = await import('./components/ProjetsSection');
         const found = projects.find((p: { id: string }) => p.id === projectId);
         if (found) {
           setSelectedProject(found);
@@ -120,9 +142,8 @@ export default function App() {
     };
   }, [selectedProject]);
 
-  const handleNextProject = async () => {
+  const handleNextProject = () => {
     if (!selectedProject) return;
-    const { projects } = await import('./components/ProjetsSection');
     const currentIndex = projects.findIndex((p: { id: string }) => p.id === selectedProject.id);
     const nextIndex = (currentIndex + 1) % projects.length;
     window.location.hash = `projet-${projects[nextIndex].id}`;
@@ -157,21 +178,27 @@ export default function App() {
   });
   const slashesX = useTransform(methodoScrollY, [0, 1], [0, 200]);
 
+  const footerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: footerScrollY } = useScroll({
+    target: footerRef,
+    offset: ["start end", "end start"]
+  });
+  const yParallaxFooter = useTransform(footerScrollY, [0, 1], ["-15%", "15%"]);
+
   const activePreset = presets[gradientPreset];
 
   // --- IntersectionObserver sentinels pour le lazy-rendering des sections ---
-  // Les sections sont montées uniquement quand le scroll s'approche à 300px
-  const { ref: scrollVelRef, inView: scrollVelInView }   = useInView({ rootMargin: '300px' });
-  const { ref: methodeSentinelRef, inView: methodeInView } = useInView({ rootMargin: '300px' });
-  const { ref: projetsSentinelRef, inView: projetsInView } = useInView({ rootMargin: '300px' });
-  const { ref: parcoursSentinelRef, inView: parcoursInView } = useInView({ rootMargin: '300px' });
+  // (Removed inView checks to prevent unmounting which broke animations and anchor links)
 
 
   return (
     <div className="relative min-h-screen bg-[#050302] text-white flex flex-col font-sans selection:bg-[#F97316] selection:text-white max-w-full overflow-x-clip">
       <Header />
-      {/* Main Content Wrapper for Sticky Footer Reveal */}
-      <div className="relative z-20 bg-[#050302] shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col w-full pb-16 max-w-full overflow-x-clip">
+      <Routes>
+        <Route path="/projet/:id" element={<ProjectDetailPage />} />
+        <Route path="*" element={
+          /* Main Content Wrapper for Sticky Footer Reveal */
+          <div className="relative z-20 bg-[#050302] shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col w-full pb-16 max-w-full overflow-x-clip">
         {/* GRID OVERLAY */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none opacity-20 z-0"></div>
 
@@ -281,21 +308,26 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
             className="flex flex-col sm:flex-row items-center gap-8 w-full md:w-auto relative z-30 pointer-events-auto"
           >
-            {/* CTA Principal (Bouton Magnétique Inversable) */}
+            {/* CTA Principal (Neon Pulse) */}
             <a
               href="#methodologie"
               onClick={(e) => {
                 e.preventDefault();
-                window.location.hash = 'methodologie';
+                window.history.pushState(null, '', '#methodologie');
                 document.getElementById('methodologie')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group relative w-full sm:w-60 h-16 rounded-none border border-white/20 bg-black text-white hover:text-black hover:border-white overflow-hidden transition-colors duration-500 cursor-pointer active:scale-95 flex items-center justify-center font-mono text-xs uppercase tracking-widest text-center shadow-2xl shadow-black/50"
+              className="group relative w-full sm:w-64 h-16 rounded-none overflow-visible transition-all duration-500 cursor-pointer active:scale-95 flex items-center justify-center font-mono text-sm uppercase tracking-widest text-center"
             >
-              <span className="relative z-10 transition-transform duration-500 group-hover:scale-105">
-                [ Découvrir le Workflow ]
+              {/* Glow pulsatile externe */}
+              <div className="absolute inset-0 bg-[#F97316] blur-[20px] opacity-40 animate-pulse group-hover:opacity-70 group-hover:bg-white transition-all duration-500" />
+              
+              {/* Fond du bouton */}
+              <div className="absolute inset-0 bg-[#F97316] group-hover:bg-white transition-colors duration-500 z-10" />
+              
+              {/* Texte */}
+              <span className="relative z-20 text-[#050302] font-black transition-transform duration-500 group-hover:scale-105">
+                Découvrir le Workflow
               </span>
-              {/* Magnetic fill effect */}
-              <div className="absolute inset-0 bg-white scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-500 ease-out z-0" />
             </a>
 
             {/* CTA Secondaire (Lien Cinétique) */}
@@ -303,7 +335,7 @@ export default function App() {
               href="#projets"
               onClick={(e) => {
                 e.preventDefault();
-                window.location.hash = 'projets';
+                window.history.pushState(null, '', '#projets');
                 document.getElementById('projets')?.scrollIntoView({ behavior: 'smooth' });
               }}
               className="group text-sm font-semibold text-white/80 hover:text-white transition-colors duration-300 relative py-2 cursor-pointer"
@@ -329,7 +361,7 @@ export default function App() {
       <section 
         id="manifeste" 
         ref={methodoRef}
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-32 overflow-hidden"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-8 overflow-hidden"
       >
         {/* Background decorative slashes /// */}
         <motion.div 
@@ -382,10 +414,7 @@ export default function App() {
 
       {/* SECTION SCROLL VELOCITY / MARQUEE */}
       <section className="relative z-30 w-full overflow-hidden border-t border-b border-white/5 bg-black/20 py-8 my-8 md:my-12">
-        {/* Sentinel: ScrollVelocity ne se monte que quand visible */}
-        <div ref={scrollVelRef} className="absolute inset-0 pointer-events-none" aria-hidden="true" />
         <Suspense fallback={<div className="h-24 w-full" />}>
-          {scrollVelInView && (
           <ScrollVelocity
             texts={[
               <div className="inline-flex items-center gap-8 pr-8 select-none">
@@ -419,7 +448,6 @@ export default function App() {
             damping={50}
             stiffness={300}
           />
-          )}
         </Suspense>
       </section>
 
@@ -427,7 +455,7 @@ export default function App() {
       <section 
         id="expertises" 
         ref={expertiseContainerRef}
-        className="relative z-30 w-full border-t border-white/5 scroll-mt-32 overflow-hidden"
+        className="relative z-30 w-full border-t border-white/5 scroll-mt-8 overflow-hidden"
       >
         {/* Background Image Container with parallax/blend effects */}
         <div 
@@ -573,10 +601,10 @@ export default function App() {
       </section>
 
       {/* SECTION CITATION / COLLABORATION */}
-      <div id="vision-manifeste" className="scroll-mt-32" />
+      <div id="vision-manifeste" className="scroll-mt-8" />
       <section 
         id="vision-manifeste-quote" 
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-32 overflow-hidden"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-8 overflow-hidden"
       >
         {/* Background decorative slashes /// */}
         <div className="absolute right-4 bottom-4 md:right-12 md:bottom-8 pointer-events-none select-none text-[150px] sm:text-[220px] md:text-[300px] font-black text-[#F97316] opacity-[0.15] leading-none tracking-tighter">
@@ -641,7 +669,7 @@ export default function App() {
                 enableTilt={true}
                 enableMobileTilt
                 onContactClick={() => {
-                  document.getElementById('contact')?.scrollIntoView();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
                 behindGlowColor={`${activePreset.start}66`}
                 behindGlowEnabled
@@ -654,7 +682,7 @@ export default function App() {
 
       {/* SECTION: 9 leviers de valeur */}
       <section 
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 pt-24 md:pt-32 pb-0 border-t border-white/5 scroll-mt-32"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 pt-24 md:pt-32 pb-0 border-t border-white/5 scroll-mt-8"
       >
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 border-b border-white/5 mb-16">
@@ -689,7 +717,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="sticky top-[240px] z-10 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[240px] z-10 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-none items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
@@ -738,7 +766,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="sticky top-[240px] z-20 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[240px] z-20 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-none items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
@@ -787,7 +815,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="sticky top-[240px] z-30 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-3xl items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
+            className="sticky top-[240px] z-30 group grid grid-cols-1 md:grid-cols-12 gap-8 p-8 md:p-12 border border-white/10 bg-[#070504] rounded-none items-center transition-all duration-300 shadow-[0_-15px_30px_rgba(0,0,0,0.8)] shadow-black/80"
           >
             {/* Left Col */}
             <div className="md:col-span-4 flex flex-col justify-between h-auto md:min-h-[140px] gap-4">
@@ -835,7 +863,7 @@ export default function App() {
       {/* SECTION: WHO IT IS FOR (DIFFÉRENTES ÉQUIPES. MÊME CLARTÉ.) */}
       <section 
         id="methodologie"
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-32 md:py-40 overflow-hidden flex flex-col items-center justify-center min-h-[600px] scroll-mt-32"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-32 md:py-40 overflow-hidden flex flex-col items-center justify-center min-h-[600px] scroll-mt-8"
       >
         {/* Fine vertical guide lines matching the page's structural grid lines */}
         <div className="absolute inset-y-0 left-0 w-[1px] bg-white/5 pointer-events-none" />
@@ -866,31 +894,31 @@ export default function App() {
         </div>
       </section>
 
-      {/* MethodeSection — sentinel IntersectionObserver */}
-      <div ref={methodeSentinelRef}>
-        <Suspense fallback={<div className="h-96 w-full" />}>
-          {methodeInView && <MethodeSection />}
+      {/* MethodeSection */}
+      <div id="methodologie" className="scroll-mt-8">
+        <Suspense fallback={<div className="h-screen w-full" />}>
+          <MethodeSection />
         </Suspense>
       </div>
 
-      {/* ProjetsSection — sentinel IntersectionObserver */}
-      <div ref={projetsSentinelRef}>
-        <Suspense fallback={<div className="h-96 w-full" />}>
-          {projetsInView && <ProjetsSection />}
+      {/* ProjetsSection */}
+      <div id="projets" className="scroll-mt-8">
+        <Suspense fallback={<div className="h-screen w-full" />}>
+          <ProjetsSection />
         </Suspense>
       </div>
 
-      {/* ParcoursSection — sentinel IntersectionObserver */}
-      <div ref={parcoursSentinelRef}>
-        <Suspense fallback={<div className="h-64 w-full" />}>
-          {parcoursInView && <ParcoursSection />}
+      {/* ParcoursSection */}
+      <div id="parcours" className="scroll-mt-8">
+        <Suspense fallback={<div className="h-screen w-full" />}>
+          <ParcoursSection />
         </Suspense>
       </div>
 
       {/* SECTION CONTACT */}
       <section 
         id="contact" 
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-32"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-8"
       >
         <div className="flex flex-col gap-12">
           
@@ -918,7 +946,7 @@ export default function App() {
                 href="#projets"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('projets')?.scrollIntoView();
+                  document.getElementById('projets')?.scrollIntoView({ behavior: 'smooth' });
                 }}
                 className="inline-flex items-center justify-center gap-2 bg-[#F97316] hover:bg-orange-600 text-white font-mono text-xs uppercase tracking-widest px-6 py-4 transition-all duration-300 hover:-translate-y-0.5"
               >
@@ -1005,7 +1033,7 @@ export default function App() {
       {/* SECTION FAQ */}
       <section 
         id="faq" 
-        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-32"
+        className="relative z-30 w-full max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32 border-t border-white/5 scroll-mt-8"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Title & CTA */}
@@ -1081,10 +1109,9 @@ export default function App() {
           </div>
         </div>
       </section>
-      </div>
 
       {/* FOOTER */}
-      <footer className="relative z-20 w-full px-6 md:px-12 pt-16 pb-8 border-t border-white/5 bg-[#080605] overflow-hidden">
+      <footer ref={footerRef} className="relative z-20 w-full px-6 md:px-12 pt-16 pb-8 border-t border-white/5 bg-[#080605] overflow-hidden">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-12 border-b border-white/5">
           <div className="flex flex-col gap-2 max-w-xl">
             <div className="flex items-center gap-2">
@@ -1177,17 +1204,14 @@ export default function App() {
                 key={idx} 
                 className="w-[180px] sm:w-[260px] md:w-[340px] aspect-[16/10] overflow-hidden border border-white/10 group/img relative bg-zinc-900"
               >
-                <img 
-                  src={img.url} 
-                  alt={img.alt}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#F97316] font-bold">
-                    {img.title}
-                  </span>
-                </div>
+                <motion.div style={{ y: yParallaxFooter }} className="w-full h-[130%] -top-[15%] relative">
+                  <img 
+                    src={img.url} 
+                    alt={img.alt}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+                  />
+                </motion.div>
               </div>
             ))}
           </div>
@@ -1224,7 +1248,9 @@ export default function App() {
           </AnimatePresence>
         </Suspense>
       )}
-
+          </div>
+        } />
+      </Routes>
       <BackToTop />
     </div>
   );
