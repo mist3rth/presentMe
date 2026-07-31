@@ -430,13 +430,13 @@ export default function App() {
                 <span className="text-white/10 text-3xl font-extralight">/</span>
                 <span className="text-slate-300 font-medium">Awesome skills</span>
                 <span className="text-white/10 text-3xl font-extralight">/</span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-red-500 font-extrabold pr-2">Human in the loop</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500 font-extrabold pr-2">Human in the loop</span>
                 <span className="text-white/10 text-3xl font-extralight">/</span>
               </div>,
               <div className="inline-flex items-center gap-8 pr-8 select-none">
                 <span className="text-slate-300 font-extrabold">Human in the loop</span>
                 <span className="text-white/10 text-3xl font-extralight">/</span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-500 pr-2">Awesome skills</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 pr-2">Awesome skills</span>
                 <span className="text-white/10 text-3xl font-extralight">/</span>
                 <span className="text-[#F97316] font-black">UXPro</span>
                 <span className="text-white/10 text-3xl font-extralight">/</span>
@@ -576,19 +576,19 @@ export default function App() {
               className="group relative flex flex-col justify-between p-8 md:p-10 md:h-[420px] min-h-[360px] md:self-center rounded-none border border-zinc-800 md:border-l-0 bg-black/80 hover:bg-black/95 transition-colors duration-300 overflow-hidden"
             >
               {/* Top accent line */}
-              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-red-500 to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-orange-500 to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="flex flex-col h-full justify-between">
                 <div>
                   {/* Number & Category */}
                   <div className="mb-8">
-                    <span className="font-mono text-xs text-red-500 font-bold tracking-widest uppercase">
+                    <span className="font-mono text-xs text-orange-500 font-bold tracking-widest uppercase">
                       03 PROMPTING & PROCESSUS IA
                     </span>
                   </div>
 
                   {/* Big Title */}
-                  <h3 className="text-2xl sm:text-3xl font-black uppercase text-white leading-tight mb-6 tracking-tighter group-hover:text-red-500 transition-colors duration-300">
+                  <h3 className="text-2xl sm:text-3xl font-black uppercase text-white leading-tight mb-6 tracking-tighter group-hover:text-orange-500 transition-colors duration-300">
                     PILOTER LES MODÈLES DE MANIÈRE STRUCTURÉE.
                   </h3>
                 </div>

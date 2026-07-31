@@ -39,6 +39,20 @@ export function ProjectDetailPage() {
   const yParallax1 = useTransform(galleryScroll, [0, 1], ["-10%", "10%"]);
   const yParallax2 = useTransform(galleryScroll, [0, 1], ["10%", "-10%"]);
 
+  const artisticRefC = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: scrollC } = useScroll({
+    target: artisticRefC,
+    offset: ["start end", "end start"]
+  });
+  const yParallaxC = useTransform(scrollC, [0, 1], ["-15%", "15%"]);
+
+  const artisticRefConclusionA = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: scrollConclusionA } = useScroll({
+    target: artisticRefConclusionA,
+    offset: ["start end", "end start"]
+  });
+  const yParallaxConclusionA = useTransform(scrollConclusionA, [0, 1], ["-20%", "20%"]);
+
   const badgeScale = useTransform(scrollY, [0, 400], [1, 1.22]); // scales up by ~20px radius
 
   const artisticHeroRef = useRef<HTMLDivElement>(null);
@@ -244,7 +258,7 @@ export function ProjectDetailPage() {
               
               <div className="lg:col-span-8 flex flex-col gap-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono uppercase tracking-[0.2em] text-red-500">
+                  <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#F97316]">
                     EXPRESSION & ART DIRECTION
                   </span>
                   <span className="text-xs font-mono px-2.5 py-0.5 border border-white/10 bg-white/5 text-slate-300 uppercase tracking-wider">
@@ -262,7 +276,7 @@ export function ProjectDetailPage() {
               </div>
 
               {/* Circular Interactive Badge */}
-              <div className="lg:col-span-4 flex justify-start lg:justify-end items-center text-white/60">
+              <div className="lg:col-span-4 flex justify-center lg:justify-end items-center text-white/60">
                 <motion.div 
                   style={{ scale: badgeScale }}
                   className="relative w-48 h-48 flex items-center justify-center"
@@ -307,14 +321,14 @@ export function ProjectDetailPage() {
                 <div className="flex flex-col gap-6 relative z-10">
                   <div className="flex flex-col gap-1 border-b border-white/5 pb-4">
                     <span className="text-xs font-mono text-slate-400 uppercase flex items-center gap-2">
-                      <Clock className="w-3.5 h-3.5 text-red-500" /> ANNEÉ & CRÉATION
+                      <Clock className="w-3.5 h-3.5 text-[#F97316]" /> ANNEÉ & CRÉATION
                     </span>
                     <span className="text-base font-bold text-white font-mono">{project.duration}</span>
                   </div>
 
                   <div className="flex flex-col gap-1 border-b border-white/5 pb-4">
                     <span className="text-xs font-mono text-slate-400 uppercase flex items-center gap-2">
-                      <User className="w-3.5 h-3.5 text-red-500" /> OUTILS & MÉDIAS
+                      <User className="w-3.5 h-3.5 text-[#F97316]" /> OUTILS & MÉDIAS
                     </span>
                     <span className="text-base font-bold text-white font-mono">{project.roleOrTools}</span>
                   </div>
@@ -335,7 +349,7 @@ export function ProjectDetailPage() {
               {/* Narrative & Visual Exploration */}
               <div className="lg:col-span-8 flex flex-col gap-8">
                 <div className="p-8 md:p-10 bg-zinc-950/40 border border-white/10 flex flex-col gap-4">
-                  <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-red-500">
+                  <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-[#F97316]">
                     / MANIFESTE ET RECHERCHE VISUELLE
                   </h3>
                   <p className="text-lg md:text-xl font-light text-slate-200 leading-relaxed italic">
@@ -369,11 +383,12 @@ export function ProjectDetailPage() {
                     </div>
                     {/* Ligne 2: 1 image large */}
                     {project.overviewC && (
-                      <div className="w-full aspect-[21/9] relative bg-zinc-950">
-                        <img 
+                      <div className="w-full aspect-[21/9] relative bg-zinc-950 overflow-hidden" ref={artisticRefC}>
+                        <motion.img 
+                          style={{ y: yParallaxC }}
                           src={project.overviewC} 
                           alt="Visual C" 
-                          className="absolute inset-0 w-full h-full object-cover"
+                          className="absolute -top-[15%] left-0 w-full h-[130%] object-cover"
                         />
                       </div>
                     )}
@@ -383,7 +398,7 @@ export function ProjectDetailPage() {
                 {/* Bloc Texte 2 (Conclusion) */}
                 {project.conclusion && (
                   <div className="p-8 md:p-10 bg-zinc-950/40 border border-white/10 flex flex-col gap-4 mt-4">
-                    <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-red-500">
+                    <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-[#F97316]">
                       / BILAN & APPRENTISSAGES
                     </h3>
                     <p className="text-lg md:text-xl font-light text-slate-200 leading-relaxed italic whitespace-pre-line">
@@ -395,11 +410,12 @@ export function ProjectDetailPage() {
                 {/* Asymmetric Conclusion Images / Video */}
                 {(project.conclusionA || project.conclusionVideo || project.conclusionB) && (
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-4 items-start">
-                    <div className="md:col-span-4 aspect-[9/16] bg-zinc-950/80 relative overflow-hidden rounded-none">
-                      <img 
+                    <div className="md:col-span-4 aspect-[9/16] bg-zinc-950/80 relative overflow-hidden rounded-none" ref={artisticRefConclusionA}>
+                      <motion.img 
+                        style={{ y: yParallaxConclusionA }}
                         src={project.conclusionA || "https://images.unsplash.com/photo-1618005198143-e5283b519a7f?auto=format&fit=crop&w=600&h=800&q=80"} 
                         alt="Focus vertical" 
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className="absolute -top-[20%] left-0 w-full h-[140%] object-cover"
                       />
                     </div>
                     <div className="md:col-span-8 aspect-[16/9] bg-zinc-950/80 relative overflow-hidden rounded-none md:mt-16">

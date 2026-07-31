@@ -228,9 +228,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
           )}
 
           {/* Other Live Projects Infinite Carousel */}
-          <div className="mt-20 border-t border-white/5 pt-12 flex flex-col items-start w-full">
-            {/* Rotating Text Ring aligned to the left */}
-            <div className="relative w-44 h-44 flex items-center justify-center mb-8 group ml-1">
+          <div className="mt-20 border-t border-white/5 pt-12 flex flex-col items-center md:items-start w-full">
+            {/* Rotating Text Ring */}
+            <div className="relative w-44 h-44 flex items-center justify-center mb-8 group md:ml-1">
               <CircularText
                 words={["LIVE", "PROJECT"]}
                 separator="//"

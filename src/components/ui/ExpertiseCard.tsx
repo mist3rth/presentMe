@@ -15,7 +15,7 @@ interface ExpertiseCardProps {
 const colorMap = {
   orange: { text: 'text-[#F97316]', gradient: 'from-[#F97316]', groupHoverText: 'group-hover:text-[#F97316]' },
   amber: { text: 'text-amber-500', gradient: 'from-amber-500', groupHoverText: 'group-hover:text-amber-500' },
-  red: { text: 'text-red-500', gradient: 'from-red-500', groupHoverText: 'group-hover:text-red-500' },
+  red: { text: 'text-orange-500', gradient: 'from-orange-500', groupHoverText: 'group-hover:text-orange-500' },
 };
 
 export const ExpertiseCard: React.FC<ExpertiseCardProps> = ({
