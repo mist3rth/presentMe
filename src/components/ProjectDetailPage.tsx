@@ -62,6 +62,49 @@ export function ProjectDetailPage() {
   });
   const artisticHeroScale = useTransform(artisticHeroScroll, [0, 1], [1, 1.25]);
 
+  useEffect(() => {
+    if (!project) return;
+    
+    document.title = `${project.title} - Thierry Thiesson`;
+    
+    // Helper pour mettre à jour ou créer les meta tags
+    const setMeta = (name: string, content: string, property: string = '') => {
+      let el = document.querySelector(`meta[${name ? `name="${name}"` : `property="${property}"`}]`);
+      if (!el) {
+        el = document.createElement('meta');
+        if (name) el.setAttribute('name', name);
+        if (property) el.setAttribute('property', property);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+
+    const desc = project.type === 'artistic' 
+      ? `Direction Artistique et Design - Projet: ${project.title}` 
+      : `Projet Digital et Design UX/UI - Projet: ${project.title}`;
+      
+    // Les réseaux sociaux ont besoin d'une URL absolue pour l'image
+    const absoluteImageUrl = project.imageUrl.startsWith('http') 
+      ? project.imageUrl 
+      : `${window.location.origin}${project.imageUrl.startsWith('/') ? '' : '/'}${project.imageUrl}`;
+      
+    setMeta('description', desc);
+    
+    // Open Graph (Facebook, LinkedIn)
+    setMeta('', `${project.title} - Thierry Thiesson`, 'og:title');
+    setMeta('', desc, 'og:description');
+    setMeta('', absoluteImageUrl, 'og:image');
+    setMeta('', window.location.href, 'og:url');
+    setMeta('', 'website', 'og:type');
+
+    // Twitter
+    setMeta('twitter:card', 'summary_large_image');
+    setMeta('twitter:title', `${project.title} - Thierry Thiesson`);
+    setMeta('twitter:description', desc);
+    setMeta('twitter:image', absoluteImageUrl);
+
+  }, [project]);
+
   if (!project) return null;
 
   return (
