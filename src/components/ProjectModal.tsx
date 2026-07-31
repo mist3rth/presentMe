@@ -596,7 +596,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
           </div>
 
         </div>
-      </div>
+      )}
       <GradualBlur
         target="page"
         position="bottom"
