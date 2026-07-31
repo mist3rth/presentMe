@@ -184,7 +184,7 @@ export default function App() {
     target: footerRef,
     offset: ["start end", "end start"]
   });
-  const yParallaxFooter = useTransform(footerScrollY, [0, 1], ["-15%", "15%"]);
+  const yParallaxFooter = useTransform(footerScrollY, [0, 1], ["-30%", "30%"]);
 
 
 
@@ -1237,7 +1237,7 @@ export default function App() {
                 key={idx} 
                 className="w-[180px] sm:w-[260px] md:w-[340px] aspect-[16/10] overflow-hidden border border-white/10 group/img relative bg-zinc-900"
               >
-                <motion.div style={{ y: yParallaxFooter }} className="w-full h-[130%] -top-[15%] relative">
+                <motion.div style={{ y: yParallaxFooter }} className="w-full h-[160%] -top-[30%] relative">
                   <img 
                     src={img.url} 
                     alt={img.alt}
