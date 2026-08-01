@@ -1210,50 +1210,63 @@ export default function App() {
           </div>
         </div>
 
-        {/* Full-width image strip, truncated on both sides */}
+        {/* Infinite Carousel of External Projects */}
         <div className="w-screen relative left-1/2 right-1/2 -translate-x-1/2 overflow-hidden py-8">
-          <div className="flex justify-center gap-4 min-w-max px-4">
-            {[
-              {
-                url: bigleafImg,
-                alt: "Big Leaf - Application Mobile & Web3",
-                title: "Big Leaf"
-              },
-              {
-                url: elgustoImg,
-                alt: "El Gusto - Haute Gastronomie",
-                title: "El Gusto"
-              },
-              {
-                url: vaAthleticImg,
-                alt: "VA Athletic - Private Coaching",
-                title: "VA Athletic"
-              },
-              {
-                url: primeImmobilierImg,
-                alt: "Prime Immobilier - Prestige",
-                title: "Prime Immobilier"
-              },
-              {
-                url: japonImg,
-                alt: "Soleil Levant - Photographie & IA",
-                title: "Soleil Levant"
-              }
-            ].map((img, idx) => (
-              <div 
-                key={idx} 
-                className="w-[180px] sm:w-[260px] md:w-[340px] aspect-[16/10] overflow-hidden border border-white/10 group/img relative bg-zinc-900"
-              >
-                <motion.div style={{ y: yParallaxFooter }} className="w-full h-[160%] -top-[30%] relative">
-                  <img 
-                    src={img.url} 
-                    alt={img.alt}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
-                  />
-                </motion.div>
-              </div>
-            ))}
+          <style>{`
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); } 
+            }
+            .animate-marquee {
+              animation: marquee 25s linear infinite;
+            }
+            .group:hover .animate-marquee {
+              animation-play-state: paused;
+            }
+          `}</style>
+          
+          <div className="group flex overflow-hidden">
+            <div className="flex gap-4 min-w-max px-2 animate-marquee hover:[animation-play-state:paused]">
+              {[
+                { url: bigleafImg, alt: "Big Leaf", title: "Big Leaf", link: "https://bigleaf.fr" },
+                { url: elgustoImg, alt: "El Gusto", title: "El Gusto", link: "https://elgusto.fr" },
+                { url: vaAthleticImg, alt: "VA Athletic", title: "VA Athletic", link: "https://va-athletic.fr" },
+                { url: primeImmobilierImg, alt: "Prime Immobilier", title: "Prime Immobilier", link: "https://prime-immobilier.fr" },
+                { url: japonImg, alt: "Soleil Levant", title: "Soleil Levant", link: "https://soleil-levant.fr" },
+                // Duplication pour la boucle infinie parfaite
+                { url: bigleafImg, alt: "Big Leaf", title: "Big Leaf", link: "https://bigleaf.fr" },
+                { url: elgustoImg, alt: "El Gusto", title: "El Gusto", link: "https://elgusto.fr" },
+                { url: vaAthleticImg, alt: "VA Athletic", title: "VA Athletic", link: "https://va-athletic.fr" },
+                { url: primeImmobilierImg, alt: "Prime Immobilier", title: "Prime Immobilier", link: "https://prime-immobilier.fr" },
+                { url: japonImg, alt: "Soleil Levant", title: "Soleil Levant", link: "https://soleil-levant.fr" }
+              ].map((project, idx) => (
+                <a 
+                  key={idx} 
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-[180px] sm:w-[260px] md:w-[340px] aspect-[16/10] overflow-hidden border border-white/10 group/img relative bg-zinc-900 cursor-pointer flex-shrink-0"
+                >
+                  <div className="w-full h-full relative">
+                    <motion.div style={{ y: yParallaxFooter }} className="w-full h-[160%] -top-[30%] relative">
+                      <img 
+                        src={project.url} 
+                        alt={project.alt}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+                      />
+                    </motion.div>
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 opacity-100 md:opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-end justify-end md:items-center md:justify-center pointer-events-none">
+                      <div className="flex items-center justify-center gap-2 text-white font-bold bg-[#F97316] w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-2 text-base rounded-none transform translate-y-0 md:translate-y-4 group-hover/img:translate-y-0 transition-transform duration-300 shadow-xl">
+                        <span className="hidden md:inline">Visiter le site</span> 
+                        <ArrowUpRight className="w-5 h-5 md:w-4 md:h-4" />
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
