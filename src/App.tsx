@@ -32,6 +32,11 @@ import elgustoImg from './assets/elgusto.webp';
 import vaAthleticImg from './assets/vaathletic.webp';
 import primeImmobilierImg from './assets/primeimmobilier.webp';
 import japonImg from './assets/japon.webp';
+import mentalImg from './assets/mental.webp';
+import vlogImg from './assets/vlog.webp';
+import waterImg from './assets/water.webp';
+import lumeImg from './assets/lume.webp';
+import reflexeImg from './assets/reflexe.webp';
 
 export type PresetKey = 'sunset' | 'aurora' | 'ocean' | 'neon';
 
@@ -1228,17 +1233,17 @@ export default function App() {
           <div className="group flex overflow-hidden">
             <div className="flex gap-4 min-w-max px-2 animate-marquee hover:[animation-play-state:paused]">
               {[
-                { url: bigleafImg, alt: "Big Leaf", title: "Big Leaf", link: "https://bigleaf.fr" },
-                { url: elgustoImg, alt: "El Gusto", title: "El Gusto", link: "https://elgusto.fr" },
-                { url: vaAthleticImg, alt: "VA Athletic", title: "VA Athletic", link: "https://va-athletic.fr" },
-                { url: primeImmobilierImg, alt: "Prime Immobilier", title: "Prime Immobilier", link: "https://prime-immobilier.fr" },
-                { url: japonImg, alt: "Soleil Levant", title: "Soleil Levant", link: "https://soleil-levant.fr" },
+                { url: mentalImg, alt: "Vortex AI", title: "Vortex AI", link: "https://vortexai-alpha.vercel.app/" },
+                { url: vlogImg, alt: "Japon Omega", title: "Japon Omega", link: "https://japon-omega.vercel.app/" },
+                { url: waterImg, alt: "Aquapownder", title: "Aquapownder", link: "https://mist3rth.github.io/aquapownder/" },
+                { url: lumeImg, alt: "LumeBoard", title: "LumeBoard", link: "https://mist3rth.github.io/lumeboard/" },
+                { url: reflexeImg, alt: "Reflex.io", title: "Reflex.io", link: "https://mist3rth.github.io/Reflex.io/" },
                 // Duplication pour la boucle infinie parfaite
-                { url: bigleafImg, alt: "Big Leaf", title: "Big Leaf", link: "https://bigleaf.fr" },
-                { url: elgustoImg, alt: "El Gusto", title: "El Gusto", link: "https://elgusto.fr" },
-                { url: vaAthleticImg, alt: "VA Athletic", title: "VA Athletic", link: "https://va-athletic.fr" },
-                { url: primeImmobilierImg, alt: "Prime Immobilier", title: "Prime Immobilier", link: "https://prime-immobilier.fr" },
-                { url: japonImg, alt: "Soleil Levant", title: "Soleil Levant", link: "https://soleil-levant.fr" }
+                { url: mentalImg, alt: "Vortex AI", title: "Vortex AI", link: "https://vortexai-alpha.vercel.app/" },
+                { url: vlogImg, alt: "Japon Omega", title: "Japon Omega", link: "https://japon-omega.vercel.app/" },
+                { url: waterImg, alt: "Aquapownder", title: "Aquapownder", link: "https://mist3rth.github.io/aquapownder/" },
+                { url: lumeImg, alt: "LumeBoard", title: "LumeBoard", link: "https://mist3rth.github.io/lumeboard/" },
+                { url: reflexeImg, alt: "Reflex.io", title: "Reflex.io", link: "https://mist3rth.github.io/Reflex.io/" }
               ].map((project, idx) => (
                 <a 
                   key={idx} 
