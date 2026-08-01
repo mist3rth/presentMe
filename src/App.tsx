@@ -10,6 +10,7 @@ import GradualBlur from './components/GradualBlur';
 import { BackToTop } from './components/ui/BackToTop';
 import { faqData, presets } from './data/portfolioData';
 import { ScrollStepIndicator } from './components/ui/ScrollStepIndicator';
+import TrueFocus from './components/ui/TrueFocus';
 const ProjectDetailPage = lazy(() => import('./components/ProjectDetailPage').then(m => ({ default: m.ProjectDetailPage })));
 
 
@@ -910,7 +911,14 @@ export default function App() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-[0.95] pointer-events-auto select-none"
           >
             DIFFÉRENTES ÉQUIPES.<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F97316] to-amber-400">MÊME CLARTÉ.</span>
+            <TrueFocus 
+              sentence="MÊME CLARTÉ."
+              manualMode={true}
+              blurAmount={5}
+              borderColor="#F97316"
+              animationDuration={0.7}
+              className="text-transparent bg-clip-text bg-gradient-to-r from-[#F97316] to-amber-400 pt-2 pb-1"
+            />
           </motion.h2>
 
           {/* Description Text */}

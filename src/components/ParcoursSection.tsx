@@ -107,7 +107,7 @@ export default function ParcoursSection() {
             </div>
 
             {/* Holographic Interactive Visual Panel */}
-            <div className="hidden md:flex relative aspect-[3/4] w-full max-w-[380px] mx-auto bg-black/60 border border-white/10 rounded-2xl items-center justify-center overflow-hidden shadow-[0_25px_65px_-15px_rgba(0,0,0,0.9)]">
+            <div className="hidden md:flex relative aspect-[3/4] w-full max-w-[380px] mx-auto bg-black/60 border border-white/10 rounded-none items-center justify-center overflow-hidden shadow-[0_25px_65px_-15px_rgba(0,0,0,0.9)]">
               
               {/* Background Image with crossfade transition */}
               <AnimatePresence mode="wait">
