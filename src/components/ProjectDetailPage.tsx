@@ -16,6 +16,7 @@ import CircularText from './ui/CircularText';
 import { AutoplayHoverPauseVideo } from './ui/AutoplayHoverPauseVideo';
 import { Grid } from './ui/GridPattern';
 import GradualBlur from './GradualBlur';
+import SpotlightReveal from './ui/SpotlightReveal';
 
 export function ProjectDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -510,8 +511,18 @@ export function ProjectDetailPage() {
             <span className="text-xs font-mono text-[#F97316] uppercase tracking-widest">
               PROJET SUIVANT ({nextIndex + 1}/{projects.length})
             </span>
-            <h3 className="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">
-              {nextProject.title}
+            <h3 className="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight flex flex-wrap gap-2 md:gap-3 justify-center md:justify-start items-baseline">
+              <span>
+                {nextProject.title.includes('///') 
+                  ? nextProject.title.split('///')[0].trim() + ' ///'
+                  : nextProject.title}
+              </span>
+              {nextProject.title.includes('///') && (
+                <SpotlightReveal 
+                  text={nextProject.title.split('///').slice(1).join('///').trim()} 
+                  transition={{ duration: 0.2, staggerChildren: 0.02, ease: "easeOut" }}
+                />
+              )}
             </h3>
           </div>
 

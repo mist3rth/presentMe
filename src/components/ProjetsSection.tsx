@@ -90,7 +90,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'bigleaf',
-    title: "Bigleaf - L'E-commerce Botanique Augmenté",
+    title: "Bigleaf /// L'E-commerce Botanique Augmenté",
       category: "E-Commerce & GenAI",
       type: "digital",
       duration: "3 jours",
@@ -146,7 +146,7 @@ export const projects: Project[] = [
     },
     {
       id: 'elgusto',
-      title: "El Gusto - L'Expérience Gastronomique Augmentée",
+      title: "El Gusto /// L'Expérience Gastronomique Augmentée",
       category: "E-Commerce Premium",
       type: "digital",
       duration: "3 jours",
@@ -202,7 +202,7 @@ export const projects: Project[] = [
     },
     {
       id: 'vaathletic',
-      title: "VA Athletic - L'Excellence du Coaching Privé",
+      title: "VA Athletic /// L'Excellence du Coaching Privé",
       category: "Vitrine Premium",
       type: "digital",
       duration: "1 jour",
@@ -257,7 +257,7 @@ export const projects: Project[] = [
     },
     {
       id: 'primeimmobilier',
-      title: "Prime Immobilier - L'Excellence Résidentielle",
+      title: "Prime Immobilier /// L'Excellence Résidentielle",
       category: "Vitrine de Prestige",
       type: "digital",
       duration: "4 jours",

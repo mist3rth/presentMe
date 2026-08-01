@@ -11,6 +11,7 @@ import { BackToTop } from './components/ui/BackToTop';
 import { faqData, presets } from './data/portfolioData';
 import { ScrollStepIndicator } from './components/ui/ScrollStepIndicator';
 import TrueFocus from './components/ui/TrueFocus';
+import PopcornPop from './components/ui/PopcornPop';
 const ProjectDetailPage = lazy(() => import('./components/ProjectDetailPage').then(m => ({ default: m.ProjectDetailPage })));
 
 
@@ -979,7 +980,7 @@ export default function App() {
                 <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#F97316]">RÉPONSE SOUS 24 HEURES</span>
               </div>
               <h2 className="text-5xl sm:text-7xl md:text-[6.5rem] font-black uppercase tracking-tighter text-white leading-none">
-                CONTACT.
+                <PopcornPop tag="span" text="CONTACT." />
               </h2>
             </div>
             
