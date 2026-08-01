@@ -98,7 +98,7 @@ export const projects: Project[] = [
       link: "https://bigleaf.vercel.app/",
       imageUrl: bigleafImg,
       description: "Plateforme e-commerce haut de gamme de succulentes rares avec un questionnaire IA d'entretien intelligent.",
-      brief: "Bigleaf est une plateforme e-commerce premium dédiée aux succulentes, cactus et plantes rares. L'objectif était de créer une expérience utilisateur haut de gamme, fluide et rassurante, incluant des fonctionnalités innovantes telles qu'un \"CareQuiz\" basé sur l'Intelligence Artificielle pour recommander les plantes parfaites selon l'environnement de l'utilisateur.\n\nLe défi majeur consistait à transformer rapidement un prototype visuel brut en une application de production robuste, performante, accessible (A11Y) et optimisée pour le référencement (SEO).",
+      brief: "Bigleaf est une plateforme e-commerce premium dédiée aux succulentes, cactus et plantes rares.\n\nL'objectif était de créer une expérience utilisateur haut de gamme, fluide et rassurante, incluant des fonctionnalités innovantes telles qu'un \"CareQuiz\" basé sur l'Intelligence Artificielle pour recommander les plantes parfaites selon l'environnement de l'utilisateur.\n\nLe défi majeur consistait à transformer rapidement un prototype visuel brut en une application de production robuste, performante, accessible (A11Y) et optimisée pour le référencement (SEO).",
       stack: [
         "React 19 (Vite)",
         "TypeScript Strict",
@@ -154,7 +154,7 @@ export const projects: Project[] = [
       link: "https://elgusto.vercel.app/",
       imageUrl: elgustoImg,
       description: "Plateforme e-commerce haut de gamme de restauration d'exception avec un système de recommandations culinaires intelligent.",
-      brief: "El Gusto est une plateforme e-commerce premium dédiée à une expérience gastronomique inoubliable, mettant en valeur des plats faits maison et des produits de saison. L'objectif était de créer une expérience utilisateur haut de gamme, fluide et alléchante, incluant des fonctionnalités innovantes telles qu'un moteur de \"Smart Pairing\" (recommandations intelligentes) pour suggérer des entrées, desserts ou boissons parfaits selon le contenu actuel du panier de l'utilisateur.\n\nLe défi majeur consistait à transformer rapidement un prototype visuel brut en une application de production robuste, immersive (grâce à des animations fluides), accessible (A11Y) et extrêmement performante.",
+      brief: "El Gusto est une plateforme e-commerce premium dédiée à une expérience gastronomique inoubliable, mettant en valeur des plats faits maison et des produits de saison.\n\nL'objectif était de créer une expérience utilisateur haut de gamme, fluide et alléchante, incluant des fonctionnalités innovantes telles qu'un moteur de \"Smart Pairing\" (recommandations intelligentes) pour suggérer des entrées, desserts ou boissons parfaits selon le contenu actuel du panier de l'utilisateur.\n\nLe défi majeur consistait à transformer rapidement un prototype visuel brut en une application de production robuste, immersive (grâce à des animations fluides), accessible (A11Y) et extrêmement performante.",
       stack: [
         "React 19 (Vite)",
         "TypeScript Strict",
@@ -210,7 +210,7 @@ export const projects: Project[] = [
       link: "https://va-athletic.vercel.app/",
       imageUrl: vaAthleticImg,
       description: "Vitrine digitale haut de gamme for un coach sportif d'élite, conçue autour d'un flux cognitif inspirant l'autorité et la confiance absolue.",
-      brief: "VA Athletic est une plateforme digitale premium dédiée à l'accompagnement sportif sur-mesure par un coach privé. L'objectif absolu était de concevoir un parcours utilisateur (flux cognitif) psychologiquement optimisé pour inspirer la confiance, asseoir l'expertise et convertir les prospects, le tout enveloppé dans une direction artistique sombre, minimaliste et luxueuse.\n\nLe défi majeur de ce projet ne résidait pas dans l'intégration de fonctionnalités complexes, mais dans l'exécution et la vélocité : utiliser l'Intelligence Artificielle non pas comme une feature du site, mais comme un puissant levier d'ingénierie pour transformer un prototype en une application de production parfaitement fluide, accessible et performante en seulement 1 jour.",
+      brief: "VA Athletic est une plateforme digitale premium dédiée à l'accompagnement sportif sur-mesure par un coach privé.\n\nL'objectif absolu était de concevoir un parcours utilisateur (flux cognitif) psychologiquement optimisé pour inspirer la confiance, asseoir l'expertise et convertir les prospects, le tout enveloppé dans une direction artistique sombre, minimaliste et luxueuse.\n\nLe défi majeur de ce projet ne résidait pas dans l'intégration de fonctionnalités complexes, mais dans l'exécution et la vélocité : utiliser l'Intelligence Artificielle non pas comme une feature du site, mais comme un puissant levier d'ingénierie pour transformer un prototype en une application de production parfaitement fluide, accessible et performante en seulement 1 jour.",
       stack: [
         "React 19 (Vite)",
         "TypeScript Strict",
@@ -265,7 +265,7 @@ export const projects: Project[] = [
       link: "https://prime-immobilier.vercel.app/",
       imageUrl: primeImmobilierImg,
       description: "Vitrine digitale haut de gamme pour des actifs immobiliers d'exception, alliant design luxueux, flux cognitif optimisé et animations léchées.",
-      brief: "Prime Immobilier est une plateforme digitale statutaire conçue pour mettre en valeur des biens résidentiels de prestige. L'objectif absolu était de délivrer un parcours utilisateur d'une fluidité absolue, pensé pour instaurer un \"flow cognitif\" optimum. Chaque interaction devait respirer le luxe et la fiabilité afin de rassurer une clientèle d'investisseurs exigeants.\n\nLe défi majeur consistait à transformer une maquette interactive générée par IA (Stitch) en une véritable application de niveau production (sécurisée, A11Y, SEO-ready) en seulement 4 jours, avec un impératif de zéro régression esthétique et d'intégration d'animations haut de gamme sans jamais pénaliser les performances.",
+      brief: "Prime Immobilier est une plateforme digitale statutaire conçue pour mettre en valeur des biens résidentiels de prestige.\n\nL'objectif absolu était de délivrer un parcours utilisateur d'une fluidité absolue, pensé pour instaurer un \"flow cognitif\" optimum. Chaque interaction devait respirer le luxe et la fiabilité afin de rassurer une clientèle d'investisseurs exigeants.\n\nLe défi majeur consistait à transformer une maquette interactive générée par IA (Stitch) en une véritable application de niveau production (sécurisée, A11Y, SEO-ready) en seulement 4 jours, avec un impératif de zéro régression esthétique et d'intégration d'animations haut de gamme sans jamais pénaliser les performances.",
       stack: [
         "React 19 (Vite)",
         "TypeScript Strict & Zod (Validation / Sécurité)",

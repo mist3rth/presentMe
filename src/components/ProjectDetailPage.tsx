@@ -396,7 +396,7 @@ export function ProjectDetailPage() {
                   <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-[#F97316]">
                     / MANIFESTE ET RECHERCHE VISUELLE
                   </h3>
-                  <p className="text-lg md:text-xl font-light text-slate-200 leading-relaxed italic">
+                  <p className="text-lg md:text-xl font-light text-slate-200 leading-relaxed italic whitespace-pre-line">
                     "{project.brief || project.conclusion || project.description}"
                   </p>
                 </div>
