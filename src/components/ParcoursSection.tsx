@@ -85,7 +85,7 @@ export default function ParcoursSection() {
       <div className="absolute inset-y-0 left-1/3 w-[1px] bg-white/5 hidden md:block pointer-events-none" />
 
       {/* Grid wrapper */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 lg:gap-16 relative z-10">
         
         {/* LEFT COLUMN: STICKY VISUAL PANEL */}
         <div className="md:col-span-5">
@@ -156,7 +156,7 @@ export default function ParcoursSection() {
               <div
                 key={item.id}
                 data-index={index}
-                className="parcours-item flex flex-col gap-4 min-h-[65vh] justify-center py-16 md:py-24 border-b border-white/5 last:border-b-0 group scroll-mt-24"
+                className="parcours-item flex flex-col gap-4 min-h-[40vh] md:min-h-[65vh] justify-center py-8 md:py-24 border-b border-white/5 last:border-b-0 group scroll-mt-24"
               >
                 <div className="flex items-center">
                   
