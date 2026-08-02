@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import retroImg from '../assets/parcours_retro.webp';
 import webImg from '../assets/parcours_web.webp';
 import designImg from '../assets/parcours_design.webp';
-import aiImg from '../assets/parcours_ai.png';
+import aiImg from '../assets/parcours_ai.webp';
 
 interface TimelineItem {
   id: number;
