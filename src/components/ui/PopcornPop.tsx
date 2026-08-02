@@ -194,6 +194,7 @@ function __OriginkitBase_PopcornPop({
       <MotionTag
         ref={scope}
         aria-label={text}
+        role="text"
         style={{
           margin: 0,
           display: "inline-block",

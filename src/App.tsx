@@ -994,7 +994,7 @@ export default function App() {
                   e.preventDefault();
                   scrollToTarget('projets');
                 }}
-                className="inline-flex items-center justify-center gap-2 bg-[#F97316] hover:bg-orange-600 text-white font-mono text-xs uppercase tracking-widest px-6 py-4 transition-all duration-300 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 bg-[#F97316] hover:bg-orange-600 text-black font-bold font-mono text-xs uppercase tracking-widest px-6 py-4 transition-all duration-300 hover:-translate-y-0.5"
               >
                 projets preview <ArrowUpRight className="w-4 h-4" />
               </a>
@@ -1176,13 +1176,13 @@ export default function App() {
           
           <div className="flex flex-col sm:flex-row gap-8 sm:gap-16 w-full md:w-auto">
             <div className="flex flex-col gap-2">
-              <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Navigation & Documents</span>
+              <span className="text-[10px] font-mono text-white/60 uppercase tracking-widest">Navigation & Documents</span>
               <div className="flex flex-col gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#F97316]">
                 <a 
                   href="https://www.linkedin.com/in/thierry-thiesson-7887501" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="hover:text-white transition-colors flex items-center gap-1.5"
+                  className="hover:text-white transition-colors flex items-center gap-1.5 p-2 -ml-2"
                 >
                   LinkedIn <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
@@ -1191,7 +1191,7 @@ export default function App() {
                   download="cv-thierry-thiesson.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
+                  className="hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer p-2 -ml-2"
                 >
                   Télécharger le CV <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
@@ -1199,16 +1199,16 @@ export default function App() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Informations</span>
+              <span className="text-[10px] font-mono text-white/60 uppercase tracking-widest">Informations</span>
               <div className="flex flex-col gap-1.5 text-xs font-mono text-slate-300">
                 <div>
-                  <span className="text-white/40 uppercase">Mail:</span>{" "}
-                  <a href="mailto:mist3rth@gmail.com" className="hover:text-[#F97316] transition-colors font-bold">
+                  <span className="text-white/60 uppercase">Mail:</span>{" "}
+                  <a href="mailto:mist3rth@gmail.com" className="hover:text-[#F97316] transition-colors font-bold p-2 -ml-2">
                     mist3rth@gmail.com
                   </a>
                 </div>
                 <div>
-                  <span className="text-white/40 uppercase">Statut:</span>{" "}
+                  <span className="text-white/60 uppercase">Statut:</span>{" "}
                   <span className="text-[#F97316] font-bold">Recherche active en CDI</span>
                 </div>
               </div>
