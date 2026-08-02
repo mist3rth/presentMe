@@ -38,7 +38,7 @@ import vlogImg from './assets/vlog.webp';
 import waterImg from './assets/water.webp';
 import lumeImg from './assets/lume.webp';
 import reflexeImg from './assets/reflexe.webp';
-
+import evaImg from './assets/eva.webp';
 export type PresetKey = 'sunset' | 'aurora' | 'ocean' | 'neon';
 
 // Type Project défini ici pour éviter l'import statique de ProjetsSection
@@ -1239,12 +1239,14 @@ export default function App() {
                 { url: waterImg, alt: "Aquapownder", title: "Aquapownder", link: "https://mist3rth.github.io/aquapownder/" },
                 { url: lumeImg, alt: "LumeBoard", title: "LumeBoard", link: "https://mist3rth.github.io/lumeboard/" },
                 { url: reflexeImg, alt: "Reflex.io", title: "Reflex.io", link: "https://mist3rth.github.io/Reflex.io/" },
+                { url: evaImg, alt: "Eva", title: "Eva", link: "https://eva-fr.com/" },
                 // Duplication pour la boucle infinie parfaite
                 { url: mentalImg, alt: "Vortex AI", title: "Vortex AI", link: "https://vortexai-alpha.vercel.app/" },
                 { url: vlogImg, alt: "Japon Omega", title: "Japon Omega", link: "https://japon-omega.vercel.app/" },
                 { url: waterImg, alt: "Aquapownder", title: "Aquapownder", link: "https://mist3rth.github.io/aquapownder/" },
                 { url: lumeImg, alt: "LumeBoard", title: "LumeBoard", link: "https://mist3rth.github.io/lumeboard/" },
-                { url: reflexeImg, alt: "Reflex.io", title: "Reflex.io", link: "https://mist3rth.github.io/Reflex.io/" }
+                { url: reflexeImg, alt: "Reflex.io", title: "Reflex.io", link: "https://mist3rth.github.io/Reflex.io/" },
+                { url: evaImg, alt: "Eva", title: "Eva", link: "https://eva-fr.com/" }
               ].map((project, idx) => (
                 <a 
                   key={idx} 
