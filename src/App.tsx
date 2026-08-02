@@ -726,7 +726,7 @@ export default function App() {
           >
             {/* Absolute Visible Title anchored to Card 1 (Desktop only) */}
             <div 
-              className="hidden md:flex absolute left-[-32px] right-[-32px] md:left-[-48px] md:right-[-48px] flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 border-b border-white/5 -mx-4 px-4 md:-mx-8 md:px-8"
+              className="hidden md:flex absolute left-0 right-0 flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 border-b border-white/5 px-8 md:px-12"
               style={{ bottom: 'calc(100% + 112px)' }}
             >
               <div className="flex flex-col gap-2">
