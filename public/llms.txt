@@ -1,0 +1,24 @@
+# Thierry Thiesson — Architecte Digital, UX & IA Générative
+
+> Thierry Thiesson est un expert senior du digital spécialisé dans l'architecture produit, la direction UX, la création de contenu (EEAT), le SEO technique, et l'orchestration avancée des intelligences artificielles génératives (GenAI). Ce site sert de vitrine de compétences et de retour d'expérience sur la fusion entre le savoir-faire humain (Human-in-the-loop) et la puissance de calcul de l'IA.
+
+## Profil & Philosophie
+- **Human-in-the-Loop (HITL)** : L'IA intervient comme un exécutant technique ou créatif ultra-rapide, mais reste pilotée à 360° par une vision humaine critique pour garantir l'impact, le flow cognitif et l'authenticité.
+- **Rigueur BMAD** : Zéro "vibe coding". Chaque projet respecte scrupuleusement les exigences de performance (LCP < 2.5s), de SEO structurel et d'accessibilité universelle (WCAG AA).
+- **Stack de prédilection** : React 19, TypeScript strict, Tailwind CSS v4, Framer Motion, GSAP, Node.js et intégration d'API de modèles LLM (Gemini, Claude).
+
+## Projets Digitaux (Production-Ready)
+Fiches techniques détaillant la conception de plateformes web complètes, de l'idéation au déploiement en quelques jours :
+
+- [Bigleaf](https://present-me-lake.vercel.app/projet/bigleaf.md): E-commerce botanique premium avec quiz d'entretien connecté à l'API Gemini.
+- [El Gusto](https://present-me-lake.vercel.app/projet/elgusto.md): E-commerce culinaire haut de gamme avec moteur de smart pairing algorithmique.
+- [VA Athletic](https://present-me-lake.vercel.app/projet/vaathletic.md): Site vitrine d'élite optimisé psychologiquement pour la conversion client (1 jour de dev).
+- [Prime Immobilier](https://present-me-lake.vercel.app/projet/primeimmobilier.md): Vitrine immobilière luxueuse avec animations fluides 60 FPS garanties.
+
+## Projets Artistiques & Direction Créative
+Campagnes publicitaires et plateformes de marques fictives réalisées entièrement en langage naturel (orchestration GenAI) :
+
+- [Japan Airlines — "Breathe"](https://present-me-lake.vercel.app/projet/japon.md): Campagne poétique Sakura axée sur l'insight émotionnel et les prompts vidéo.
+- [NOCTA — Horlogerie](https://present-me-lake.vercel.app/projet/nocta.md): Création d'une marque de luxe urbaine de A à Z (Chrome & Bleu électrique).
+- [Nike Air Max 90 — "Almost"](https://present-me-lake.vercel.app/projet/nike.md): Campagne absurde et décalée détournant l'icône de la sneaker.
+- [Causes — Intérêt Public](https://present-me-lake.vercel.app/projet/assos.md): 9 affiches chocs pour 3 associations nationales (Sida, Enfants malades, Violences conjugales).
