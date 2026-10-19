@@ -1,6 +1,7 @@
 # 📝 TODO - Plan d'Action S2P
 
 ## Phase 1 : Préparation & Outillage (Shield Pro)
+- [x] Configurer les en-têtes de sécurité HTTP dans `vercel.json` (CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy).
 - [ ] Activer TS `strict` dans `tsconfig.json`.
 - [ ] Créer l'utilitaire `utils/logger.ts` (`log.dev()`).
 - [ ] Créer le composant `ErrorBoundary` dans `src/components/`.

@@ -41,3 +41,11 @@ src/
 ## 4. Sécurité & Qualité (Shield Pro)
 - **ErrorBoundary** : Enveloppement des composants majeurs.
 - **Logger** : Utilitaires pour logger seulement en mode dev.
+- **HTTP Security Headers (`vercel.json`)** :
+  - `Content-Security-Policy (CSP)` : Restriction granulaire des sources autorisées (scripts, polices Google Fonts, images Unsplash, médias, styles).
+  - `Strict-Transport-Security (HSTS)` : Forçage HTTPS avec `preload` et `includeSubDomains`.
+  - `X-Frame-Options` : `DENY` (Protection anti-clickjacking).
+  - `X-Content-Type-Options` : `nosniff` (Blocage du MIME sniffing).
+  - `Referrer-Policy` : `strict-origin-when-cross-origin`.
+  - `Permissions-Policy` : Blocage d'accès aux APIs matérielles inutilisées (`camera`, `microphone`, `geolocation`, `payment`).
+
