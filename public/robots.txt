@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://thierrythiesson.com/sitemap.xml
+Sitemap: https://present-me-lake.vercel.app/sitemap.xml
